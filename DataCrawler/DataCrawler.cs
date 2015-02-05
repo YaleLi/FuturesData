@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataCrawler
 {
-    class DataCrawler
+    public abstract class DataCrawler
     {
+        abstract public void PullData(DateTime start, DateTime End, Func<string, DateTime> dataHandler);
     }
 }
