@@ -1,4 +1,5 @@
 ﻿
+
 namespace DataCrawler
 {
     using System;
@@ -7,10 +8,12 @@ namespace DataCrawler
     using System.IO;
     using System.Net;
     using System.Text;
+    using Utility;
 
     public abstract class DataCrawler
     {
         protected Encoding ContentEncoding { get; set; }
+        public ILogger RuntimeLogger { get; set; }
         protected string PullData(DateTime date, string url)
         {
             if(string.IsNullOrEmpty(url))
@@ -19,10 +22,21 @@ namespace DataCrawler
             }
 
             string content = null;
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            var response = (HttpWebResponse)request.GetResponse();
+            try
+            {
+                var request = (HttpWebRequest) WebRequest.Create(url);
+                var response = (HttpWebResponse) request.GetResponse();
 
-            var reader = new StreamReader(response.GetResponseStream(), ContentEncoding);
+                var reader = new StreamReader(response.GetResponseStream(), ContentEncoding);
+                content = reader.ReadToEnd();
+            }
+            catch (Exception e)
+            {
+                if (null != RuntimeLogger)
+                {
+                    RuntimeLogger.Log(e.GetType().ToString() + "===" + e.Message + ": " + url);
+                }
+            }
 
             return content;
         }
@@ -44,6 +58,10 @@ namespace DataCrawler
             string content = "";
             while(date.CompareTo(endTime) <= 0)
             {
+                if (date.DayOfWeek== DayOfWeek.Saturday || date.DayOfWeek==DayOfWeek.Sunday)
+                {
+                    continue;
+                }
                 content = PullData(date, BuildUrl());
                 if (null != dataHandler && !string.IsNullOrEmpty(content))
                 {
