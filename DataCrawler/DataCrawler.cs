@@ -6,8 +6,24 @@ using System.Threading.Tasks;
 
 namespace DataCrawler
 {
-    public abstract class DataCrawler
+    public class DataCrawler
     {
-        abstract public void PullData(DateTime start, DateTime End, Func<string, DateTime> dataHandler);
+        public void PullData(DateTime start, DateTime end, Func<string, DateTime> dataHandler)
+        {
+            DateTime endTime = end;
+            if(end.Hour < 18)
+            {
+
+            }
+            if(end.CompareTo(start) < 0)
+            {
+                return;
+            }
+
+            if(null != dataHandler)
+            {
+                dataHandler()
+            }
+        }
     }
 }
