@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CzceDailyTransactionCrawler.cs" />
+    <Compile Include="CzceDataCrawler.cs" />
+    <Compile Include="CzceDealerPositionCrawler.cs" />
     <Compile Include="DataCrawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShfeDailyTransactionCrawler.cs" />
+    <Compile Include="ShfeDataCrawler.cs" />
+    <Compile Include="ShfeDealerPositionCrawler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataType\DataType.csproj">
