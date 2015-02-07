@@ -11,7 +11,7 @@ using Utility;
 
 namespace DataParser
 {
-    public class ShfeTransactionParser
+    public class ShfeTransactionParser : ITransactionParser
     {
         public List<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate)
         {

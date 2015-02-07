@@ -22,5 +22,37 @@ namespace DataType
         public string BuyDealers { get; set; }
 
         public string SellDealers { get; set; }
+
+        public DealerPositionInfo(DateTime transactionDate, string commodity, string month, string volumeDealers,
+            string buyDealers, string sellDealers)
+        {
+            TransactionDate = transactionDate;
+            Commodity = commodity;
+            Month = month;
+            VolumeDealers = volumeDealers;
+            BuyDealers = buyDealers;
+            SellDealers = sellDealers;
+
+            Id = Commodity + Month + "_" + TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider);
+        }
+
+        public bool Equals(DealerPositionInfo another)
+        {
+            if (null == another)
+            {
+                return false;
+            }
+
+            if (this == another)
+            {
+                return true;
+            }
+            string tmpDate1 = TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider);
+            string tmpDate2 = another.TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider);
+
+            return tmpDate1.Equals(tmpDate2) && Commodity.Equals(another.Commodity) && Month.Equals(another.Month) &&
+                   VolumeDealers.Equals(another.VolumeDealers) && BuyDealers.Equals(another.BuyDealers) &&
+                   SellDealers.Equals(another.SellDealers);
+        }
     }
 }
