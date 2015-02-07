@@ -32,5 +32,23 @@ namespace ModelFirstTest
         public int Volume { get; set; }
 
         public int Position { get; set; }
+
+        public ContractTransactionInfo(DateTime date, string exchange, string commodity, string contract, double open, 
+                double high, double low, double close, double settle, int volume, int position)
+        {
+            TransactionDate = date;
+            Commodity = commodity;
+            Exchange = exchange;
+            Contract = contract;
+            OpenPrice = open;
+            HighPrice = high;
+            LowPrice = low;
+            ClosePrice = close;
+            SettlePrice = settle;
+            Volume = volume;
+            Position = position;
+
+            ID = Exchange + "_" + Commodity + Contract + "_" + TransactionDate.ToString("yyyyMMdd");
+        }
     }
 }
