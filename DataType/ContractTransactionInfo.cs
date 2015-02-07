@@ -1,4 +1,5 @@
 using DataType;
+using Utility;
 
 namespace DataType
 {
@@ -64,10 +65,13 @@ namespace DataType
             {
                 return true;
             }
-            return TransactionDate.Equals(another.TransactionDate) && Commodity.Equals(another.Commodity) && 
-                   OpenPrice.Equals(another.OpenPrice) && HighPrice.Equals(another.HighPrice) && 
-                   LowPrice.Equals(another.LowPrice) && ClosePrice.Equals(another.ClosePrice) && SettlePrice.Equals(another.SettlePrice) &&
-                   Volume==another.Volume && Position==another.Volume;
+
+            string dateString1 = TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider);
+            string dateString2 = another.TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider);
+            return dateString1.Equals(dateString2) && Commodity.Equals(another.Commodity) && 
+                   DoubleUtility.Equals(OpenPrice, another.OpenPrice) && DoubleUtility.Equals(HighPrice, another.HighPrice) && 
+                   DoubleUtility.Equals(LowPrice, another.LowPrice) && DoubleUtility.Equals(ClosePrice, another.ClosePrice) && 
+                   DoubleUtility.Equals(SettlePrice, another.SettlePrice) && Volume==another.Volume && Position==another.Position;
         }
     }
 }

@@ -25,11 +25,7 @@ namespace Utility
             }
 
             long diff = Math.Abs(lValue1 - lValue2);
-
-            if (diff <= (long)2)
-                return true;
-
-            return false;
+            return (diff <= (long) 2);
         }
 
         public static double Parse(string input, IFormatProvider formatProvider, double defaultValue)
