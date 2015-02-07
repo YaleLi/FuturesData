@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public abstract class DceDataCrawler :DataCrawler
     {
-        public DceDataCrawler()
+        protected DceDataCrawler()
         {
             ContentEncoding = Encoding.GetEncoding("GB2312");
         }

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public class ShfeDealerPositionCrawler : ShfeDataCrawler
     {
-        protected override string BuildUrl(DateTime date)
+        protected override Uri BuildUrl(DateTime transactionDate)
         {
             string url = ConfigurationManager.AppSettings["Shfe.Dealer.Position.Url"];
 
-            return url.Replace("[DATE]", date.ToString("yyyyMMdd"));
+            return new Uri(url.Replace("[DATE]", transactionDate.ToString(DateFormat, DateFormatterProvider)));
         }
     }
 }

@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public class CzceDealerPositionCrawler :CzceDataCrawler
     {
-        protected override string BuildUrl(DateTime date)
+        protected override Uri BuildUrl(DateTime transactionDate)
         {
             string url = ConfigurationManager.AppSettings["Czce.Dealer.Position.Url"];
 
-            return BuildUrl(url, date);
+            return BuildUrl(url, transactionDate);
         }
     }
 }

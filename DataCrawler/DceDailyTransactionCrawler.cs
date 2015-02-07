@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public class DceDailyTransactionCrawler :DceDataCrawler
     {
-        protected override string BuildUrl(DateTime date)
+        protected override Uri BuildUrl(DateTime transactionDate)
         {
             string url = ConfigurationManager.AppSettings["Dce.Transaction.Url"];
 
-            return url.Replace("[DATE]", date.ToString("yyyyMMdd"));
+            return new Uri(url.Replace("[DATE]", transactionDate.ToString(DateFormat, DateFormatterProvider)));
         }
     }
 }

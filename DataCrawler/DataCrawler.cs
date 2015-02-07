@@ -1,6 +1,6 @@
 ﻿
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     using System;
     using System.Configuration;
@@ -12,12 +12,14 @@ namespace DataCrawler
 
     public abstract class DataCrawler
     {
+        protected string DateFormat { get; set; } = "yyyyMMdd";
+        protected IFormatProvider DateFormatterProvider { get; set; } = new CultureInfo("zh-Hans");
         protected Encoding ContentEncoding { get; set; }
         public ILogger RuntimeLogger { get; set; }
-        abstract protected string BuildUrl(DateTime date);
-        protected string PullData(DateTime date, string url)
+        abstract protected Uri BuildUrl(DateTime transactionDate);
+        protected string PullData(Uri url)
         {
-            if(string.IsNullOrEmpty(url))
+            if(null==url)
             {
                 return "";
             }
@@ -31,7 +33,7 @@ namespace DataCrawler
                 var reader = new StreamReader(response.GetResponseStream(), ContentEncoding);
                 content = reader.ReadToEnd();
             }
-            catch (Exception e)
+            catch (WebException e)
             {
                 if (null != RuntimeLogger)
                 {
@@ -45,7 +47,7 @@ namespace DataCrawler
         public void PullData(DateTime start, DateTime end, Action<string, DateTime> dataHandler)
         {
             DateTime endTime = end;
-            int publishTime = Int32.Parse(ConfigurationManager.AppSettings["DataPublishTime"], NumberStyles.Any);
+            int publishTime = Int32.Parse(ConfigurationManager.AppSettings["DataPublishTime"], NumberStyles.Any, new CultureInfo("zh-Hans"));
             if (endTime.Date.Equals(DateTime.Now.Date) && endTime.Hour<publishTime)
             {
                 endTime = endTime.AddDays(-1);
@@ -63,7 +65,7 @@ namespace DataCrawler
                 {
                     continue;
                 }
-                content = PullData(date, BuildUrl(date));
+                content = PullData(BuildUrl(date));
                 if (null != dataHandler && !string.IsNullOrEmpty(content))
                 {
                     dataHandler(content, date);

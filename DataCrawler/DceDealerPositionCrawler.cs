@@ -5,24 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public class DceDealerPositionCrawler :DceDataCrawler
     {
         public string Commodity { get; private set; }
         public string Month { get; private set; }
 
-        public DceDealerPositionCrawler(string commdity, string month) : base()
+        public DceDealerPositionCrawler(string commodity, string month) : base()
         {
-            Commodity = string.IsNullOrEmpty(commdity) ? "" : commdity.Trim();
+            Commodity = string.IsNullOrEmpty(commodity) ? "" : commodity.Trim();
             Month = string.IsNullOrEmpty(month) ? "" : month.Trim();
         }
-        protected override string BuildUrl(DateTime date)
+        protected override Uri BuildUrl(DateTime transactionDate)
         {
             string url = string.IsNullOrEmpty(Month) ? url = ConfigurationManager.AppSettings["Dce.Dealer.Position.Commodity.Url"] 
                                                      : ConfigurationManager.AppSettings["Dce.Dealer.Position.Contract.Url"];
 
-            url = url.Replace("[DATE]", date.ToString("yyyyMMdd"));
+            url = url.Replace("[DATE]", transactionDate.ToString(DateFormat, DateFormatterProvider));
             url = url.Replace("[VARIETY]", Commodity);
 
             if (!string.IsNullOrEmpty(Month))
@@ -30,7 +30,7 @@ namespace DataCrawler
                 url = url.Replace("[CONTRACT]", Commodity + Month);
             }
 
-            return url;
+            return new Uri(url);
         }
     }
 }

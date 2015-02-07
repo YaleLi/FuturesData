@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using System.Text;
-    using DataCrawler;
+    using FuturesDataCrawler;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

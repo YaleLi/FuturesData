@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public abstract class CzceDataCrawler :DataCrawler
     {
-        public CzceDataCrawler()
+        protected CzceDataCrawler()
         {
             ContentEncoding = Encoding.GetEncoding("GB2312");
         }
 
-        protected virtual string BuildUrl(string origConfig, DateTime date)
+        protected virtual Uri BuildUrl(string origConfig, DateTime transactionDate)
         {
-            var url = origConfig.Replace("[DATE]", date.ToString("yyyyMMdd"));
-            url = url.Replace("[YEAR]", date.ToString("yyyy"));
+            if (string.IsNullOrWhiteSpace(origConfig))
+            {
+                throw new WebException("Invalid Empty Url: ");
+            }
+            var url = origConfig.Replace("[DATE]", transactionDate.ToString(DateFormat, DateFormatterProvider));
+            url = url.Replace("[YEAR]", transactionDate.ToString("yyyy", DateFormatterProvider));
 
-            return url;
+            return new Uri(url);
         }
     }
 }

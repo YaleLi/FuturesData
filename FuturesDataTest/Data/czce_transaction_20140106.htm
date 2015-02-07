@@ -1,0 +1,2144 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<title>每日行情表</title>
+<LINK href="../../../cms/scheme/css/cms.css" type="text/css" rel="stylesheet">
+<LINK href="/portal/exchange/scheme/css/data.css" type="text/css" rel="stylesheet">
+<SCRIPT language="javascript" src="/portal/exchange/scheme/js/data.js"></SCRIPT>
+<script language="javascript" src="../../../scheme/js/mycalendar.js"></script>
+<script language="JavaScript" src="../../scheme/js/syslimit.js"></script>
+<SCRIPT language="javascript" src="../scheme/js/function.js"></SCRIPT>
+<SCRIPT language="javascript" src="../scheme/js/select.js"></SCRIPT>
+<SCRIPT language="javascript" src="../../../scheme/js/pub.js"></SCRIPT>
+<script language="javascript">
+function senfe(o,a,b){
+var t=document.getElementById(o).getElementsByTagName("tr");
+for(var i=0;i<t.length;i++){
+t[i].style.backgroundColor=(t[i].sectionRowIndex%2==0)?a:b;
+t[i].onclick=function(){
+if(this.x!="1"){
+this.x="1";
+}else{
+this.x="0";
+this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+}
+}
+t[i].onmouseover=function(){
+}
+t[i].onmouseout=function(){
+if(this.x!="1")this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+}
+}
+}
+function search()
+{
+var tmpvalue = document.form2.exchangeDate.value.trim();
+document.form2.exchangeDate.value = tmpvalue;
+document.form2.target="_self";
+document.form2.action="datadaily.jsp";
+document.form2.submit();
+}
+function generate()
+{
+var tmpvalue = document.form2.exchangeDate.value.trim();
+document.form2.exchangeDate.value = tmpvalue;
+document.form2.ishistory.value = "";
+document.form2.target="czcewin";
+document.form2.action="datadailygenerate.jsp";
+document.form2.submit();
+}
+function generateHistory()
+{
+var tmpvalue = document.form2.exchangeDate.value.trim();
+document.form2.exchangeDate.value = tmpvalue;
+document.form2.ishistory.value = "1";
+document.form2.target="czcewin";
+document.form2.action="datadailygenerate.jsp";
+document.form2.submit();
+}
+
+--></script>
+</head>
+<body leftMargin=0 topmargin="0" scroll="auto" bgcolor="#eff5fb">
+<div id="proc" style="position:absolute; top:150; left:100; z-index:10;display:">
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD width="10%"></TD>
+<TD bgcolor="#58a3cb">
+<TABLE WIDTH="100%" height="100" BORDER="0" CELLSPACING="2" CELLPADDING="0">
+<TR><TD bgcolor="#eeeeee" align="center">正在装载页面, 请稍候...</TD></TR>
+</TABLE>
+</TD>
+<TD width="19%"></TD>
+</TR>
+</TABLE>
+</div>
+
+</P>
+<div id="toexcel"><br>
+
+<table border="0" align="center" cellpadding="3" cellspacing="0" class="tablebg" bgcolor="#eff5fb">
+<tr>
+<td height="150" class="td-noborder"><div class="title">每日行情表<hr></div>
+<div class="title2">
+2014-01-06&nbsp;&nbsp;本月第3个交易日&nbsp;&nbsp;本年第3个交易日&nbsp;
+<style media=print>
+.Noprint{display:none;}
+.PageNext{page-break-after: always;}
+</style>
+<!--P align=center class="noprint"-->
+<OBJECT  id=WebBrowser  classid=CLSID:8856F961-340A-11D0-A96B-00C04FD705A2  height=0  width=0 VIEWASTEXT>
+</OBJECT>
+<input type=button value="打印" onclick="document.all.WebBrowser.ExecWB(6,1)" class="button">
+&nbsp;
+<input name="button2" type="button" id="button2" value="excel" title="请在浏览器【Internet选项】-【安全】选项卡中，将该站点设置为可信站点，才可以下载数据！" onclick="javascript:exportExcel('toexcel');" class="button">
+<input name="button2" type="button" id="button2" value="txt"  onclick="javascript:window.open('/portal/exchange/2014/datadaily/20140106.txt');" class="button">
+<!--/P>
+</p-->
+</div>
+<br>
+<table  border="0" bordercolor="#000000" align="center" cellpadding="2" cellspacing="0" class="table" id="senfe">
+<tr class="tr0">
+<td nowrap> 品种月份 </td>
+<td nowrap> 昨结算</td>
+<td  nowrap>今开盘</td>
+<td  nowrap> 最高价</td>
+<td  nowrap> 最低价</td>
+<td  nowrap> 今收盘</td>
+<td  nowrap> 今结算</td>
+<td  nowrap> 涨跌1</td>
+<td  nowrap> 涨跌2</td>
+<td  nowrap> 成交量(手)</td>
+<td  nowrap>空盘量</td>
+<td  nowrap>增减量</td>
+<td  nowrap> 成交额(万元)</td>
+<td  nowrap>交割结算价</td>
+</tr>
+
+<tr >
+<td >CF401</td>
+<td  class="td-right">18,960.00</td>
+<td  class="td-right">19,080.00</td>
+<td  class="td-right">19,080.00</td>
+<td  class="td-right">19,080.00</td>
+<td  class="td-right">19,080.00</td>
+<td  class="td-right">19,080.00</td>
+<td  class="td-right">120.00</td>
+<td  class="td-right">120.00</td>
+<td  class="td-right">582</td>
+<td  class="td-right">896</td>
+<td  class="td-right">-582</td>
+<td  class="td-right">5,543.64</td>
+<td  class="td-right">18,870.00</td>
+</tr>
+
+<tr >
+<td >CF403</td>
+<td  class="td-right">19,145.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">19,125.00</td>
+<td  class="td-right">-20.00</td>
+<td  class="td-right">-20.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">48</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >CF405</td>
+<td  class="td-right">19,330.00</td>
+<td  class="td-right">19,295.00</td>
+<td  class="td-right">19,375.00</td>
+<td  class="td-right">19,250.00</td>
+<td  class="td-right">19,280.00</td>
+<td  class="td-right">19,305.00</td>
+<td  class="td-right">-50.00</td>
+<td  class="td-right">-25.00</td>
+<td  class="td-right">29,350</td>
+<td  class="td-right">75,696</td>
+<td  class="td-right">2,720</td>
+<td  class="td-right">283,336.77</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >CF407</td>
+<td  class="td-right">19,035.00</td>
+<td  class="td-right">19,055.00</td>
+<td  class="td-right">19,055.00</td>
+<td  class="td-right">19,055.00</td>
+<td  class="td-right">19,055.00</td>
+<td  class="td-right">19,055.00</td>
+<td  class="td-right">20.00</td>
+<td  class="td-right">20.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">42</td>
+<td  class="td-right">0</td>
+<td  class="td-right">19.06</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >CF409</td>
+<td  class="td-right">18,820.00</td>
+<td  class="td-right">18,815.00</td>
+<td  class="td-right">18,825.00</td>
+<td  class="td-right">18,700.00</td>
+<td  class="td-right">18,700.00</td>
+<td  class="td-right">18,760.00</td>
+<td  class="td-right">-120.00</td>
+<td  class="td-right">-60.00</td>
+<td  class="td-right">6,082</td>
+<td  class="td-right">27,016</td>
+<td  class="td-right">830</td>
+<td  class="td-right">57,043.96</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >CF411</td>
+<td  class="td-right">16,900.00</td>
+<td  class="td-right">16,850.00</td>
+<td  class="td-right">16,850.00</td>
+<td  class="td-right">16,375.00</td>
+<td  class="td-right">16,395.00</td>
+<td  class="td-right">16,545.00</td>
+<td  class="td-right">-505.00</td>
+<td  class="td-right">-355.00</td>
+<td  class="td-right">18,378</td>
+<td  class="td-right">33,236</td>
+<td  class="td-right">206</td>
+<td  class="td-right">152,053.46</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">54,394</td>
+<td  class="td-right">136,934</td>
+<td  class="td-right">3,174</td>
+<td  class="td-right">497,996.89</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG401</td>
+<td  class="td-right">1,265.00</td>
+<td  class="td-right">1,240.00</td>
+<td  class="td-right">1,270.00</td>
+<td  class="td-right">1,225.00</td>
+<td  class="td-right">1,256.00</td>
+<td  class="td-right">1,250.00</td>
+<td  class="td-right">-9.00</td>
+<td  class="td-right">-15.00</td>
+<td  class="td-right">62</td>
+<td  class="td-right">924</td>
+<td  class="td-right">-18</td>
+<td  class="td-right">155.06</td>
+<td  class="td-right">1,306.00</td>
+</tr>
+
+<tr >
+<td >FG402</td>
+<td  class="td-right">1,294.00</td>
+<td  class="td-right">1,293.00</td>
+<td  class="td-right">1,293.00</td>
+<td  class="td-right">1,260.00</td>
+<td  class="td-right">1,260.00</td>
+<td  class="td-right">1,282.00</td>
+<td  class="td-right">-34.00</td>
+<td  class="td-right">-12.00</td>
+<td  class="td-right">78</td>
+<td  class="td-right">234</td>
+<td  class="td-right">-44</td>
+<td  class="td-right">200.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG403</td>
+<td  class="td-right">1,297.00</td>
+<td  class="td-right">1,281.00</td>
+<td  class="td-right">1,282.00</td>
+<td  class="td-right">1,274.00</td>
+<td  class="td-right">1,278.00</td>
+<td  class="td-right">1,279.00</td>
+<td  class="td-right">-19.00</td>
+<td  class="td-right">-18.00</td>
+<td  class="td-right">22</td>
+<td  class="td-right">132</td>
+<td  class="td-right">-16</td>
+<td  class="td-right">56.28</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG404</td>
+<td  class="td-right">1,291.00</td>
+<td  class="td-right">1,291.00</td>
+<td  class="td-right">1,291.00</td>
+<td  class="td-right">1,274.00</td>
+<td  class="td-right">1,274.00</td>
+<td  class="td-right">1,283.00</td>
+<td  class="td-right">-17.00</td>
+<td  class="td-right">-8.00</td>
+<td  class="td-right">62</td>
+<td  class="td-right">212</td>
+<td  class="td-right">-22</td>
+<td  class="td-right">159.13</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG405</td>
+<td  class="td-right">1,279.00</td>
+<td  class="td-right">1,282.00</td>
+<td  class="td-right">1,288.00</td>
+<td  class="td-right">1,253.00</td>
+<td  class="td-right">1,255.00</td>
+<td  class="td-right">1,268.00</td>
+<td  class="td-right">-24.00</td>
+<td  class="td-right">-11.00</td>
+<td  class="td-right">369,924</td>
+<td  class="td-right">312,358</td>
+<td  class="td-right">45,482</td>
+<td  class="td-right">938,061.88</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG406</td>
+<td  class="td-right">1,357.00</td>
+<td  class="td-right">1,362.00</td>
+<td  class="td-right">1,362.00</td>
+<td  class="td-right">1,332.00</td>
+<td  class="td-right">1,335.00</td>
+<td  class="td-right">1,351.00</td>
+<td  class="td-right">-22.00</td>
+<td  class="td-right">-6.00</td>
+<td  class="td-right">72</td>
+<td  class="td-right">850</td>
+<td  class="td-right">14</td>
+<td  class="td-right">194.56</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG407</td>
+<td  class="td-right">1,368.00</td>
+<td  class="td-right">1,357.00</td>
+<td  class="td-right">1,357.00</td>
+<td  class="td-right">1,357.00</td>
+<td  class="td-right">1,357.00</td>
+<td  class="td-right">1,357.00</td>
+<td  class="td-right">-11.00</td>
+<td  class="td-right">-11.00</td>
+<td  class="td-right">4</td>
+<td  class="td-right">4</td>
+<td  class="td-right">0</td>
+<td  class="td-right">10.86</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG408</td>
+<td  class="td-right">1,373.00</td>
+<td  class="td-right">1,377.00</td>
+<td  class="td-right">1,377.00</td>
+<td  class="td-right">1,345.00</td>
+<td  class="td-right">1,345.00</td>
+<td  class="td-right">1,369.00</td>
+<td  class="td-right">-28.00</td>
+<td  class="td-right">-4.00</td>
+<td  class="td-right">26</td>
+<td  class="td-right">198</td>
+<td  class="td-right">2</td>
+<td  class="td-right">71.18</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG409</td>
+<td  class="td-right">1,370.00</td>
+<td  class="td-right">1,374.00</td>
+<td  class="td-right">1,378.00</td>
+<td  class="td-right">1,342.00</td>
+<td  class="td-right">1,345.00</td>
+<td  class="td-right">1,359.00</td>
+<td  class="td-right">-25.00</td>
+<td  class="td-right">-11.00</td>
+<td  class="td-right">31,296</td>
+<td  class="td-right">42,840</td>
+<td  class="td-right">4,376</td>
+<td  class="td-right">85,081.92</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG410</td>
+<td  class="td-right">1,379.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">1,348.00</td>
+<td  class="td-right">-31.00</td>
+<td  class="td-right">-31.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">4</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG411</td>
+<td  class="td-right">1,383.00</td>
+<td  class="td-right">1,359.00</td>
+<td  class="td-right">1,359.00</td>
+<td  class="td-right">1,359.00</td>
+<td  class="td-right">1,359.00</td>
+<td  class="td-right">1,359.00</td>
+<td  class="td-right">-24.00</td>
+<td  class="td-right">-24.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">5.44</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >FG412</td>
+<td  class="td-right">1,391.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">1,366.00</td>
+<td  class="td-right">-25.00</td>
+<td  class="td-right">-25.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">401,548</td>
+<td  class="td-right">357,758</td>
+<td  class="td-right">49,774</td>
+<td  class="td-right">1,023,996.31</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >JR403</td>
+<td  class="td-right">3,180.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">3,180.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">204</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >JR405</td>
+<td  class="td-right">3,072.00</td>
+<td  class="td-right">3,072.00</td>
+<td  class="td-right">3,075.00</td>
+<td  class="td-right">3,069.00</td>
+<td  class="td-right">3,074.00</td>
+<td  class="td-right">3,071.00</td>
+<td  class="td-right">2.00</td>
+<td  class="td-right">-1.00</td>
+<td  class="td-right">160</td>
+<td  class="td-right">2,450</td>
+<td  class="td-right">-32</td>
+<td  class="td-right">982.66</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >JR407</td>
+<td  class="td-right">3,049.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">3,049.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >JR409</td>
+<td  class="td-right">3,060.00</td>
+<td  class="td-right">3,063.00</td>
+<td  class="td-right">3,063.00</td>
+<td  class="td-right">3,063.00</td>
+<td  class="td-right">3,063.00</td>
+<td  class="td-right">3,063.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">74</td>
+<td  class="td-right">314</td>
+<td  class="td-right">-72</td>
+<td  class="td-right">453.32</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >JR411</td>
+<td  class="td-right">2,997.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,997.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">54</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">234</td>
+<td  class="td-right">3,024</td>
+<td  class="td-right">-104</td>
+<td  class="td-right">1,435.98</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME401</td>
+<td  class="td-right">2,867.00</td>
+<td  class="td-right">2,752.00</td>
+<td  class="td-right">2,752.00</td>
+<td  class="td-right">2,752.00</td>
+<td  class="td-right">2,752.00</td>
+<td  class="td-right">2,752.00</td>
+<td  class="td-right">-115.00</td>
+<td  class="td-right">-115.00</td>
+<td  class="td-right">8</td>
+<td  class="td-right">106</td>
+<td  class="td-right">-4</td>
+<td  class="td-right">110.08</td>
+<td  class="td-right">3,054.00</td>
+</tr>
+
+<tr >
+<td >ME402</td>
+<td  class="td-right">2,954.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,954.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">4</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME403</td>
+<td  class="td-right">2,891.00</td>
+<td  class="td-right">2,930.00</td>
+<td  class="td-right">2,930.00</td>
+<td  class="td-right">2,870.00</td>
+<td  class="td-right">2,870.00</td>
+<td  class="td-right">2,900.00</td>
+<td  class="td-right">-21.00</td>
+<td  class="td-right">9.00</td>
+<td  class="td-right">8</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">116.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME404</td>
+<td  class="td-right">2,885.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,885.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">4</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME405</td>
+<td  class="td-right">2,885.00</td>
+<td  class="td-right">2,880.00</td>
+<td  class="td-right">2,920.00</td>
+<td  class="td-right">2,865.00</td>
+<td  class="td-right">2,898.00</td>
+<td  class="td-right">2,896.00</td>
+<td  class="td-right">13.00</td>
+<td  class="td-right">11.00</td>
+<td  class="td-right">88,694</td>
+<td  class="td-right">37,518</td>
+<td  class="td-right">2,508</td>
+<td  class="td-right">1,284,374.74</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME406</td>
+<td  class="td-right">2,914.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,914.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">8</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME407</td>
+<td  class="td-right">2,869.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,880.00</td>
+<td  class="td-right">11.00</td>
+<td  class="td-right">11.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME408</td>
+<td  class="td-right">2,890.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,901.00</td>
+<td  class="td-right">11.00</td>
+<td  class="td-right">11.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME409</td>
+<td  class="td-right">2,895.00</td>
+<td  class="td-right">2,891.00</td>
+<td  class="td-right">2,923.00</td>
+<td  class="td-right">2,880.00</td>
+<td  class="td-right">2,893.00</td>
+<td  class="td-right">2,898.00</td>
+<td  class="td-right">-2.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">2,944</td>
+<td  class="td-right">6,656</td>
+<td  class="td-right">276</td>
+<td  class="td-right">42,653.35</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME410</td>
+<td  class="td-right">2,857.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,860.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME411</td>
+<td  class="td-right">2,853.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,856.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >ME412</td>
+<td  class="td-right">2,915.00</td>
+<td  class="td-right">2,911.00</td>
+<td  class="td-right">2,911.00</td>
+<td  class="td-right">2,911.00</td>
+<td  class="td-right">2,911.00</td>
+<td  class="td-right">2,911.00</td>
+<td  class="td-right">-4.00</td>
+<td  class="td-right">-4.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">29.11</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">91,656</td>
+<td  class="td-right">44,306</td>
+<td  class="td-right">2,780</td>
+<td  class="td-right">1,327,283.28</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >OI401</td>
+<td  class="td-right">7,016.00</td>
+<td  class="td-right">7,050.00</td>
+<td  class="td-right">7,050.00</td>
+<td  class="td-right">6,900.00</td>
+<td  class="td-right">6,940.00</td>
+<td  class="td-right">6,936.00</td>
+<td  class="td-right">-76.00</td>
+<td  class="td-right">-80.00</td>
+<td  class="td-right">238</td>
+<td  class="td-right">2,514</td>
+<td  class="td-right">-208</td>
+<td  class="td-right">1,650.80</td>
+<td  class="td-right">7,136.00</td>
+</tr>
+
+<tr >
+<td >OI403</td>
+<td  class="td-right">7,030.00</td>
+<td  class="td-right">7,040.00</td>
+<td  class="td-right">7,040.00</td>
+<td  class="td-right">6,900.00</td>
+<td  class="td-right">6,900.00</td>
+<td  class="td-right">6,908.00</td>
+<td  class="td-right">-130.00</td>
+<td  class="td-right">-122.00</td>
+<td  class="td-right">42</td>
+<td  class="td-right">6</td>
+<td  class="td-right">-36</td>
+<td  class="td-right">290.13</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >OI405</td>
+<td  class="td-right">7,000.00</td>
+<td  class="td-right">6,970.00</td>
+<td  class="td-right">6,972.00</td>
+<td  class="td-right">6,844.00</td>
+<td  class="td-right">6,880.00</td>
+<td  class="td-right">6,898.00</td>
+<td  class="td-right">-120.00</td>
+<td  class="td-right">-102.00</td>
+<td  class="td-right">248,964</td>
+<td  class="td-right">257,674</td>
+<td  class="td-right">-12,004</td>
+<td  class="td-right">1,717,200.59</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >OI407</td>
+<td  class="td-right">7,058.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">6,948.00</td>
+<td  class="td-right">-110.00</td>
+<td  class="td-right">-110.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >OI409</td>
+<td  class="td-right">7,040.00</td>
+<td  class="td-right">7,004.00</td>
+<td  class="td-right">7,010.00</td>
+<td  class="td-right">6,904.00</td>
+<td  class="td-right">6,928.00</td>
+<td  class="td-right">6,946.00</td>
+<td  class="td-right">-112.00</td>
+<td  class="td-right">-94.00</td>
+<td  class="td-right">22,734</td>
+<td  class="td-right">52,546</td>
+<td  class="td-right">1,268</td>
+<td  class="td-right">157,915.13</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >OI411</td>
+<td  class="td-right">7,134.00</td>
+<td  class="td-right">7,000.00</td>
+<td  class="td-right">7,000.00</td>
+<td  class="td-right">7,000.00</td>
+<td  class="td-right">7,000.00</td>
+<td  class="td-right">7,000.00</td>
+<td  class="td-right">-134.00</td>
+<td  class="td-right">-134.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">22</td>
+<td  class="td-right">0</td>
+<td  class="td-right">14.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">271,980</td>
+<td  class="td-right">312,764</td>
+<td  class="td-right">-10,980</td>
+<td  class="td-right">1,877,070.65</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >PM401</td>
+<td  class="td-right">2,620.00</td>
+<td  class="td-right">2,630.00</td>
+<td  class="td-right">2,650.00</td>
+<td  class="td-right">2,630.00</td>
+<td  class="td-right">2,650.00</td>
+<td  class="td-right">2,641.00</td>
+<td  class="td-right">30.00</td>
+<td  class="td-right">21.00</td>
+<td  class="td-right">14</td>
+<td  class="td-right">28</td>
+<td  class="td-right">-8</td>
+<td  class="td-right">184.90</td>
+<td  class="td-right">2,624.00</td>
+</tr>
+
+<tr >
+<td >PM403</td>
+<td  class="td-right">2,650.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,671.00</td>
+<td  class="td-right">21.00</td>
+<td  class="td-right">21.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >PM405</td>
+<td  class="td-right">2,596.00</td>
+<td  class="td-right">2,571.00</td>
+<td  class="td-right">2,604.00</td>
+<td  class="td-right">2,570.00</td>
+<td  class="td-right">2,570.00</td>
+<td  class="td-right">2,583.00</td>
+<td  class="td-right">-26.00</td>
+<td  class="td-right">-13.00</td>
+<td  class="td-right">20</td>
+<td  class="td-right">8</td>
+<td  class="td-right">-8</td>
+<td  class="td-right">258.32</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >PM407</td>
+<td  class="td-right">2,616.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,603.00</td>
+<td  class="td-right">-13.00</td>
+<td  class="td-right">-13.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >PM409</td>
+<td  class="td-right">2,533.00</td>
+<td  class="td-right">2,551.00</td>
+<td  class="td-right">2,551.00</td>
+<td  class="td-right">2,551.00</td>
+<td  class="td-right">2,551.00</td>
+<td  class="td-right">2,551.00</td>
+<td  class="td-right">18.00</td>
+<td  class="td-right">18.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">42</td>
+<td  class="td-right">-2</td>
+<td  class="td-right">25.51</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >PM411</td>
+<td  class="td-right">2,592.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,610.00</td>
+<td  class="td-right">18.00</td>
+<td  class="td-right">18.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">36</td>
+<td  class="td-right">80</td>
+<td  class="td-right">-18</td>
+<td  class="td-right">468.73</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RI401</td>
+<td  class="td-right">2,192.00</td>
+<td  class="td-right">2,192.00</td>
+<td  class="td-right">2,192.00</td>
+<td  class="td-right">2,192.00</td>
+<td  class="td-right">2,192.00</td>
+<td  class="td-right">2,192.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">6</td>
+<td  class="td-right">1,192</td>
+<td  class="td-right">-6</td>
+<td  class="td-right">26.30</td>
+<td  class="td-right">2,231.00</td>
+</tr>
+
+<tr >
+<td >RI403</td>
+<td  class="td-right">2,316.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,316.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RI405</td>
+<td  class="td-right">2,275.00</td>
+<td  class="td-right">2,278.00</td>
+<td  class="td-right">2,285.00</td>
+<td  class="td-right">2,262.00</td>
+<td  class="td-right">2,278.00</td>
+<td  class="td-right">2,276.00</td>
+<td  class="td-right">3.00</td>
+<td  class="td-right">1.00</td>
+<td  class="td-right">5,698</td>
+<td  class="td-right">28,816</td>
+<td  class="td-right">-1,704</td>
+<td  class="td-right">25,933.21</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RI407</td>
+<td  class="td-right">2,359.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,360.00</td>
+<td  class="td-right">1.00</td>
+<td  class="td-right">1.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RI409</td>
+<td  class="td-right">2,410.00</td>
+<td  class="td-right">2,401.00</td>
+<td  class="td-right">2,406.00</td>
+<td  class="td-right">2,385.00</td>
+<td  class="td-right">2,397.00</td>
+<td  class="td-right">2,397.00</td>
+<td  class="td-right">-13.00</td>
+<td  class="td-right">-13.00</td>
+<td  class="td-right">70</td>
+<td  class="td-right">192</td>
+<td  class="td-right">16</td>
+<td  class="td-right">335.64</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RI411</td>
+<td  class="td-right">2,446.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,446.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">6</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">5,774</td>
+<td  class="td-right">30,210</td>
+<td  class="td-right">-1,694</td>
+<td  class="td-right">26,295.15</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RM401</td>
+<td  class="td-right">2,681.00</td>
+<td  class="td-right">2,730.00</td>
+<td  class="td-right">2,730.00</td>
+<td  class="td-right">2,702.00</td>
+<td  class="td-right">2,715.00</td>
+<td  class="td-right">2,720.00</td>
+<td  class="td-right">34.00</td>
+<td  class="td-right">39.00</td>
+<td  class="td-right">350</td>
+<td  class="td-right">11,342</td>
+<td  class="td-right">-124</td>
+<td  class="td-right">951.94</td>
+<td  class="td-right">2,656.00</td>
+</tr>
+
+<tr >
+<td >RM403</td>
+<td  class="td-right">2,679.00</td>
+<td  class="td-right">2,689.00</td>
+<td  class="td-right">2,695.00</td>
+<td  class="td-right">2,675.00</td>
+<td  class="td-right">2,683.00</td>
+<td  class="td-right">2,686.00</td>
+<td  class="td-right">4.00</td>
+<td  class="td-right">7.00</td>
+<td  class="td-right">162</td>
+<td  class="td-right">3,774</td>
+<td  class="td-right">-30</td>
+<td  class="td-right">435.18</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RM405</td>
+<td  class="td-right">2,623.00</td>
+<td  class="td-right">2,628.00</td>
+<td  class="td-right">2,639.00</td>
+<td  class="td-right">2,612.00</td>
+<td  class="td-right">2,620.00</td>
+<td  class="td-right">2,624.00</td>
+<td  class="td-right">-3.00</td>
+<td  class="td-right">1.00</td>
+<td  class="td-right">2,462,186</td>
+<td  class="td-right">1,104,062</td>
+<td  class="td-right">3,830</td>
+<td  class="td-right">6,459,608.12</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RM407</td>
+<td  class="td-right">2,586.00</td>
+<td  class="td-right">2,598.00</td>
+<td  class="td-right">2,598.00</td>
+<td  class="td-right">2,572.00</td>
+<td  class="td-right">2,578.00</td>
+<td  class="td-right">2,581.00</td>
+<td  class="td-right">-8.00</td>
+<td  class="td-right">-5.00</td>
+<td  class="td-right">168</td>
+<td  class="td-right">1,364</td>
+<td  class="td-right">36</td>
+<td  class="td-right">433.66</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RM408</td>
+<td  class="td-right">2,556.00</td>
+<td  class="td-right">2,537.00</td>
+<td  class="td-right">2,548.00</td>
+<td  class="td-right">2,534.00</td>
+<td  class="td-right">2,534.00</td>
+<td  class="td-right">2,541.00</td>
+<td  class="td-right">-22.00</td>
+<td  class="td-right">-15.00</td>
+<td  class="td-right">90</td>
+<td  class="td-right">472</td>
+<td  class="td-right">88</td>
+<td  class="td-right">228.68</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RM409</td>
+<td  class="td-right">2,486.00</td>
+<td  class="td-right">2,488.00</td>
+<td  class="td-right">2,496.00</td>
+<td  class="td-right">2,447.00</td>
+<td  class="td-right">2,450.00</td>
+<td  class="td-right">2,468.00</td>
+<td  class="td-right">-36.00</td>
+<td  class="td-right">-18.00</td>
+<td  class="td-right">480,982</td>
+<td  class="td-right">646,714</td>
+<td  class="td-right">52,298</td>
+<td  class="td-right">1,187,117.44</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RM411</td>
+<td  class="td-right">2,339.00</td>
+<td  class="td-right">2,339.00</td>
+<td  class="td-right">2,346.00</td>
+<td  class="td-right">2,299.00</td>
+<td  class="td-right">2,300.00</td>
+<td  class="td-right">2,320.00</td>
+<td  class="td-right">-39.00</td>
+<td  class="td-right">-19.00</td>
+<td  class="td-right">43,410</td>
+<td  class="td-right">45,762</td>
+<td  class="td-right">7,522</td>
+<td  class="td-right">100,703.62</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">2,987,348</td>
+<td  class="td-right">1,813,490</td>
+<td  class="td-right">63,620</td>
+<td  class="td-right">7,749,478.64</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RS407</td>
+<td  class="td-right">4,980.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">4,980.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RS408</td>
+<td  class="td-right">5,015.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">5,015.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RS409</td>
+<td  class="td-right">4,917.00</td>
+<td  class="td-right">4,906.00</td>
+<td  class="td-right">4,973.00</td>
+<td  class="td-right">4,876.00</td>
+<td  class="td-right">4,960.00</td>
+<td  class="td-right">4,936.00</td>
+<td  class="td-right">43.00</td>
+<td  class="td-right">19.00</td>
+<td  class="td-right">120</td>
+<td  class="td-right">56</td>
+<td  class="td-right">26</td>
+<td  class="td-right">592.31</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >RS411</td>
+<td  class="td-right">4,911.00</td>
+<td  class="td-right">5,075.00</td>
+<td  class="td-right">5,075.00</td>
+<td  class="td-right">5,075.00</td>
+<td  class="td-right">5,075.00</td>
+<td  class="td-right">5,075.00</td>
+<td  class="td-right">164.00</td>
+<td  class="td-right">164.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">10.15</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">122</td>
+<td  class="td-right">60</td>
+<td  class="td-right">26</td>
+<td  class="td-right">602.46</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR401</td>
+<td  class="td-right">4,835.00</td>
+<td  class="td-right">4,800.00</td>
+<td  class="td-right">4,810.00</td>
+<td  class="td-right">4,760.00</td>
+<td  class="td-right">4,760.00</td>
+<td  class="td-right">4,787.00</td>
+<td  class="td-right">-75.00</td>
+<td  class="td-right">-48.00</td>
+<td  class="td-right">1,876</td>
+<td  class="td-right">5,998</td>
+<td  class="td-right">-988</td>
+<td  class="td-right">8,980.60</td>
+<td  class="td-right">4,899.00</td>
+</tr>
+
+<tr >
+<td >SR403</td>
+<td  class="td-right">4,786.00</td>
+<td  class="td-right">4,702.00</td>
+<td  class="td-right">4,702.00</td>
+<td  class="td-right">4,671.00</td>
+<td  class="td-right">4,671.00</td>
+<td  class="td-right">4,687.00</td>
+<td  class="td-right">-115.00</td>
+<td  class="td-right">-99.00</td>
+<td  class="td-right">4</td>
+<td  class="td-right">496</td>
+<td  class="td-right">0</td>
+<td  class="td-right">18.75</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR405</td>
+<td  class="td-right">4,766.00</td>
+<td  class="td-right">4,738.00</td>
+<td  class="td-right">4,738.00</td>
+<td  class="td-right">4,646.00</td>
+<td  class="td-right">4,653.00</td>
+<td  class="td-right">4,673.00</td>
+<td  class="td-right">-113.00</td>
+<td  class="td-right">-93.00</td>
+<td  class="td-right">625,638</td>
+<td  class="td-right">677,236</td>
+<td  class="td-right">70,622</td>
+<td  class="td-right">2,923,901.83</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR407</td>
+<td  class="td-right">4,806.00</td>
+<td  class="td-right">4,743.00</td>
+<td  class="td-right">4,743.00</td>
+<td  class="td-right">4,699.00</td>
+<td  class="td-right">4,708.00</td>
+<td  class="td-right">4,737.00</td>
+<td  class="td-right">-98.00</td>
+<td  class="td-right">-69.00</td>
+<td  class="td-right">58</td>
+<td  class="td-right">246</td>
+<td  class="td-right">-18</td>
+<td  class="td-right">274.74</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR409</td>
+<td  class="td-right">4,816.00</td>
+<td  class="td-right">4,796.00</td>
+<td  class="td-right">4,796.00</td>
+<td  class="td-right">4,694.00</td>
+<td  class="td-right">4,703.00</td>
+<td  class="td-right">4,723.00</td>
+<td  class="td-right">-113.00</td>
+<td  class="td-right">-93.00</td>
+<td  class="td-right">89,128</td>
+<td  class="td-right">198,354</td>
+<td  class="td-right">11,252</td>
+<td  class="td-right">420,936.56</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR411</td>
+<td  class="td-right">4,864.00</td>
+<td  class="td-right">4,836.00</td>
+<td  class="td-right">4,836.00</td>
+<td  class="td-right">4,777.00</td>
+<td  class="td-right">4,787.00</td>
+<td  class="td-right">4,820.00</td>
+<td  class="td-right">-77.00</td>
+<td  class="td-right">-44.00</td>
+<td  class="td-right">50</td>
+<td  class="td-right">214</td>
+<td  class="td-right">-2</td>
+<td  class="td-right">241.02</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR501</td>
+<td  class="td-right">4,899.00</td>
+<td  class="td-right">4,870.00</td>
+<td  class="td-right">4,870.00</td>
+<td  class="td-right">4,806.00</td>
+<td  class="td-right">4,806.00</td>
+<td  class="td-right">4,821.00</td>
+<td  class="td-right">-93.00</td>
+<td  class="td-right">-78.00</td>
+<td  class="td-right">14,584</td>
+<td  class="td-right">49,426</td>
+<td  class="td-right">224</td>
+<td  class="td-right">70,316.66</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR503</td>
+<td  class="td-right">4,903.00</td>
+<td  class="td-right">4,819.00</td>
+<td  class="td-right">4,923.00</td>
+<td  class="td-right">4,819.00</td>
+<td  class="td-right">4,923.00</td>
+<td  class="td-right">4,871.00</td>
+<td  class="td-right">20.00</td>
+<td  class="td-right">-32.00</td>
+<td  class="td-right">4</td>
+<td  class="td-right">10</td>
+<td  class="td-right">0</td>
+<td  class="td-right">19.48</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >SR505</td>
+<td  class="td-right">4,921.00</td>
+<td  class="td-right">4,885.00</td>
+<td  class="td-right">4,889.00</td>
+<td  class="td-right">4,830.00</td>
+<td  class="td-right">4,830.00</td>
+<td  class="td-right">4,847.00</td>
+<td  class="td-right">-91.00</td>
+<td  class="td-right">-74.00</td>
+<td  class="td-right">490</td>
+<td  class="td-right">1,806</td>
+<td  class="td-right">140</td>
+<td  class="td-right">2,374.90</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">731,832</td>
+<td  class="td-right">933,786</td>
+<td  class="td-right">81,230</td>
+<td  class="td-right">3,427,064.54</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA401</td>
+<td  class="td-right">7,436.00</td>
+<td  class="td-right">7,350.00</td>
+<td  class="td-right">7,400.00</td>
+<td  class="td-right">7,340.00</td>
+<td  class="td-right">7,340.00</td>
+<td  class="td-right">7,380.00</td>
+<td  class="td-right">-96.00</td>
+<td  class="td-right">-56.00</td>
+<td  class="td-right">22,722</td>
+<td  class="td-right">156,292</td>
+<td  class="td-right">-21,272</td>
+<td  class="td-right">84,405.87</td>
+<td  class="td-right">7,548.00</td>
+</tr>
+
+<tr >
+<td >TA402</td>
+<td  class="td-right">7,258.00</td>
+<td  class="td-right">7,240.00</td>
+<td  class="td-right">7,240.00</td>
+<td  class="td-right">7,220.00</td>
+<td  class="td-right">7,220.00</td>
+<td  class="td-right">7,230.00</td>
+<td  class="td-right">-38.00</td>
+<td  class="td-right">-28.00</td>
+<td  class="td-right">40</td>
+<td  class="td-right">262</td>
+<td  class="td-right">24</td>
+<td  class="td-right">144.57</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA403</td>
+<td  class="td-right">7,286.00</td>
+<td  class="td-right">7,196.00</td>
+<td  class="td-right">7,196.00</td>
+<td  class="td-right">7,196.00</td>
+<td  class="td-right">7,196.00</td>
+<td  class="td-right">7,196.00</td>
+<td  class="td-right">-90.00</td>
+<td  class="td-right">-90.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">26</td>
+<td  class="td-right">0</td>
+<td  class="td-right">7.20</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA404</td>
+<td  class="td-right">7,260.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">7,200.00</td>
+<td  class="td-right">-60.00</td>
+<td  class="td-right">-60.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">56</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA405</td>
+<td  class="td-right">7,240.00</td>
+<td  class="td-right">7,210.00</td>
+<td  class="td-right">7,212.00</td>
+<td  class="td-right">7,136.00</td>
+<td  class="td-right">7,146.00</td>
+<td  class="td-right">7,174.00</td>
+<td  class="td-right">-94.00</td>
+<td  class="td-right">-66.00</td>
+<td  class="td-right">238,492</td>
+<td  class="td-right">422,160</td>
+<td  class="td-right">14,676</td>
+<td  class="td-right">855,463.60</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA406</td>
+<td  class="td-right">7,218.00</td>
+<td  class="td-right">7,172.00</td>
+<td  class="td-right">7,172.00</td>
+<td  class="td-right">7,120.00</td>
+<td  class="td-right">7,120.00</td>
+<td  class="td-right">7,142.00</td>
+<td  class="td-right">-98.00</td>
+<td  class="td-right">-76.00</td>
+<td  class="td-right">28</td>
+<td  class="td-right">44</td>
+<td  class="td-right">24</td>
+<td  class="td-right">99.99</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA407</td>
+<td  class="td-right">7,230.00</td>
+<td  class="td-right">7,150.00</td>
+<td  class="td-right">7,150.00</td>
+<td  class="td-right">7,080.00</td>
+<td  class="td-right">7,080.00</td>
+<td  class="td-right">7,110.00</td>
+<td  class="td-right">-150.00</td>
+<td  class="td-right">-120.00</td>
+<td  class="td-right">16</td>
+<td  class="td-right">46</td>
+<td  class="td-right">4</td>
+<td  class="td-right">56.88</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA408</td>
+<td  class="td-right">7,184.00</td>
+<td  class="td-right">7,130.00</td>
+<td  class="td-right">7,130.00</td>
+<td  class="td-right">7,130.00</td>
+<td  class="td-right">7,130.00</td>
+<td  class="td-right">7,130.00</td>
+<td  class="td-right">-54.00</td>
+<td  class="td-right">-54.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">22</td>
+<td  class="td-right">0</td>
+<td  class="td-right">7.13</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA409</td>
+<td  class="td-right">7,194.00</td>
+<td  class="td-right">7,126.00</td>
+<td  class="td-right">7,130.00</td>
+<td  class="td-right">7,022.00</td>
+<td  class="td-right">7,048.00</td>
+<td  class="td-right">7,060.00</td>
+<td  class="td-right">-146.00</td>
+<td  class="td-right">-134.00</td>
+<td  class="td-right">27,178</td>
+<td  class="td-right">38,636</td>
+<td  class="td-right">11,806</td>
+<td  class="td-right">95,942.61</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA410</td>
+<td  class="td-right">7,180.00</td>
+<td  class="td-right">7,080.00</td>
+<td  class="td-right">7,080.00</td>
+<td  class="td-right">7,026.00</td>
+<td  class="td-right">7,026.00</td>
+<td  class="td-right">7,054.00</td>
+<td  class="td-right">-154.00</td>
+<td  class="td-right">-126.00</td>
+<td  class="td-right">20</td>
+<td  class="td-right">6</td>
+<td  class="td-right">0</td>
+<td  class="td-right">70.53</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA411</td>
+<td  class="td-right">7,180.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">7,088.00</td>
+<td  class="td-right">-92.00</td>
+<td  class="td-right">-92.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TA412</td>
+<td  class="td-right">7,180.00</td>
+<td  class="td-right">7,104.00</td>
+<td  class="td-right">7,104.00</td>
+<td  class="td-right">7,104.00</td>
+<td  class="td-right">7,104.00</td>
+<td  class="td-right">7,104.00</td>
+<td  class="td-right">-76.00</td>
+<td  class="td-right">-76.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">7.10</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">288,502</td>
+<td  class="td-right">617,552</td>
+<td  class="td-right">5,262</td>
+<td  class="td-right">1,036,205.48</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC401</td>
+<td  class="td-right">587.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">587.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">702</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">588.60</td>
+</tr>
+
+<tr >
+<td >TC402</td>
+<td  class="td-right">565.80</td>
+<td  class="td-right">551.00</td>
+<td  class="td-right">551.00</td>
+<td  class="td-right">550.80</td>
+<td  class="td-right">550.80</td>
+<td  class="td-right">551.00</td>
+<td  class="td-right">-15.00</td>
+<td  class="td-right">-14.80</td>
+<td  class="td-right">12</td>
+<td  class="td-right">12</td>
+<td  class="td-right">8</td>
+<td  class="td-right">132.23</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC403</td>
+<td  class="td-right">564.60</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">559.80</td>
+<td  class="td-right">-4.80</td>
+<td  class="td-right">-4.80</td>
+<td  class="td-right">0</td>
+<td  class="td-right">2</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC404</td>
+<td  class="td-right">558.60</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">553.20</td>
+<td  class="td-right">-5.40</td>
+<td  class="td-right">-5.40</td>
+<td  class="td-right">0</td>
+<td  class="td-right">10</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC405</td>
+<td  class="td-right">559.00</td>
+<td  class="td-right">557.00</td>
+<td  class="td-right">558.40</td>
+<td  class="td-right">550.40</td>
+<td  class="td-right">551.00</td>
+<td  class="td-right">553.20</td>
+<td  class="td-right">-8.00</td>
+<td  class="td-right">-5.80</td>
+<td  class="td-right">63,470</td>
+<td  class="td-right">58,806</td>
+<td  class="td-right">2,100</td>
+<td  class="td-right">702,218.18</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC406</td>
+<td  class="td-right">558.20</td>
+<td  class="td-right">554.40</td>
+<td  class="td-right">556.60</td>
+<td  class="td-right">552.00</td>
+<td  class="td-right">553.00</td>
+<td  class="td-right">554.60</td>
+<td  class="td-right">-5.20</td>
+<td  class="td-right">-3.60</td>
+<td  class="td-right">62</td>
+<td  class="td-right">58</td>
+<td  class="td-right">50</td>
+<td  class="td-right">687.73</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC407</td>
+<td  class="td-right">554.80</td>
+<td  class="td-right">554.40</td>
+<td  class="td-right">555.40</td>
+<td  class="td-right">554.40</td>
+<td  class="td-right">555.40</td>
+<td  class="td-right">555.00</td>
+<td  class="td-right">0.60</td>
+<td  class="td-right">0.20</td>
+<td  class="td-right">4</td>
+<td  class="td-right">2</td>
+<td  class="td-right">-2</td>
+<td  class="td-right">44.39</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC408</td>
+<td  class="td-right">556.20</td>
+<td  class="td-right">552.80</td>
+<td  class="td-right">552.80</td>
+<td  class="td-right">550.00</td>
+<td  class="td-right">550.00</td>
+<td  class="td-right">551.40</td>
+<td  class="td-right">-6.20</td>
+<td  class="td-right">-4.80</td>
+<td  class="td-right">8</td>
+<td  class="td-right">2</td>
+<td  class="td-right">-4</td>
+<td  class="td-right">88.22</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC409</td>
+<td  class="td-right">555.40</td>
+<td  class="td-right">552.60</td>
+<td  class="td-right">554.20</td>
+<td  class="td-right">546.80</td>
+<td  class="td-right">547.80</td>
+<td  class="td-right">550.20</td>
+<td  class="td-right">-7.60</td>
+<td  class="td-right">-5.20</td>
+<td  class="td-right">3,230</td>
+<td  class="td-right">11,282</td>
+<td  class="td-right">500</td>
+<td  class="td-right">35,537.94</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC410</td>
+<td  class="td-right">555.40</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">549.00</td>
+<td  class="td-right">-6.40</td>
+<td  class="td-right">-6.40</td>
+<td  class="td-right">0</td>
+<td  class="td-right">6</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC411</td>
+<td  class="td-right">560.60</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">555.40</td>
+<td  class="td-right">-5.20</td>
+<td  class="td-right">-5.20</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >TC412</td>
+<td  class="td-right">560.20</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">555.00</td>
+<td  class="td-right">-5.20</td>
+<td  class="td-right">-5.20</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">66,786</td>
+<td  class="td-right">70,882</td>
+<td  class="td-right">2,652</td>
+<td  class="td-right">738,708.69</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >WH401</td>
+<td  class="td-right">2,876.00</td>
+<td  class="td-right">2,878.00</td>
+<td  class="td-right">2,886.00</td>
+<td  class="td-right">2,784.00</td>
+<td  class="td-right">2,870.00</td>
+<td  class="td-right">2,882.00</td>
+<td  class="td-right">-6.00</td>
+<td  class="td-right">6.00</td>
+<td  class="td-right">888</td>
+<td  class="td-right">20,102</td>
+<td  class="td-right">-760</td>
+<td  class="td-right">5,118.83</td>
+<td  class="td-right">2,879.00</td>
+</tr>
+
+<tr >
+<td >WH403</td>
+<td  class="td-right">2,848.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,848.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >WH405</td>
+<td  class="td-right">2,820.00</td>
+<td  class="td-right">2,831.00</td>
+<td  class="td-right">2,832.00</td>
+<td  class="td-right">2,821.00</td>
+<td  class="td-right">2,829.00</td>
+<td  class="td-right">2,827.00</td>
+<td  class="td-right">9.00</td>
+<td  class="td-right">7.00</td>
+<td  class="td-right">18,502</td>
+<td  class="td-right">133,764</td>
+<td  class="td-right">-544</td>
+<td  class="td-right">104,620.04</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >WH407</td>
+<td  class="td-right">2,755.00</td>
+<td  class="td-right">2,746.00</td>
+<td  class="td-right">2,746.00</td>
+<td  class="td-right">2,746.00</td>
+<td  class="td-right">2,746.00</td>
+<td  class="td-right">2,746.00</td>
+<td  class="td-right">-9.00</td>
+<td  class="td-right">-9.00</td>
+<td  class="td-right">2</td>
+<td  class="td-right">24</td>
+<td  class="td-right">0</td>
+<td  class="td-right">10.98</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >WH409</td>
+<td  class="td-right">2,742.00</td>
+<td  class="td-right">2,749.00</td>
+<td  class="td-right">2,753.00</td>
+<td  class="td-right">2,740.00</td>
+<td  class="td-right">2,748.00</td>
+<td  class="td-right">2,746.00</td>
+<td  class="td-right">6.00</td>
+<td  class="td-right">4.00</td>
+<td  class="td-right">696</td>
+<td  class="td-right">15,748</td>
+<td  class="td-right">104</td>
+<td  class="td-right">3,821.80</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >WH411</td>
+<td  class="td-right">2,742.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">2,742.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">0</td>
+<td  class="td-right">6</td>
+<td  class="td-right">0</td>
+<td  class="td-right">0.00</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >小计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">20,088</td>
+<td  class="td-right">169,644</td>
+<td  class="td-right">-1,200</td>
+<td  class="td-right">113,571.65</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+<tr >
+<td >总计</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">&nbsp;</td>
+<td  class="td-right">4,920,300</td>
+<td  class="td-right">4,490,490</td>
+<td  class="td-right">194,522</td>
+<td  class="td-right">17,820,178.45</td>
+<td  class="td-right">&nbsp;</td>
+</tr>
+
+
+</table></td>
+</tr>
+<tr>
+<td valign="top" class="td-note"><br>说明： <br>
+(1) 价格：元/吨 <br>
+(2) 成交量、空盘量：手<br>
+(3) 成交额：万元<br>
+(4) 涨跌一：今收盘-昨结算<br>
+(5) 涨跌二：今结算-昨结算
+</td>
+</tr>
+</table>
+<script language="javascript"><!--
+//senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
+senfe("senfe","#eaf4fc","#fff");
+//senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
+//senfe("senfe2","#d7d6d6","#fff");
+--></script>
+</div>
+<div style='display:none'>publishdate:2014/01/06 15:25:44</div>
+
+
+<script language="javascript">document.getElementById("proc").style.display = "none";</script>
+</body>
+</html>
+

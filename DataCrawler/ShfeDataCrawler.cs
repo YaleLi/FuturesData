@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public abstract class ShfeDataCrawler : DataCrawler
     {
-        public ShfeDataCrawler()
+        protected ShfeDataCrawler()
         {
             ContentEncoding = Encoding.UTF8;
         }
