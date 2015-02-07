@@ -1,5 +1,7 @@
 ﻿
 
+using DataType;
+
 namespace FuturesDataCrawler
 {
     using System;
@@ -12,8 +14,8 @@ namespace FuturesDataCrawler
 
     public abstract class DataCrawler
     {
-        protected string DateFormat { get; set; } = "yyyyMMdd";
-        protected IFormatProvider DateFormatterProvider { get; set; } = new CultureInfo("zh-Hans");
+        protected string DateFormat { get; set; } = GlobalDefinition.DateFormat;
+        protected IFormatProvider DateFormatterProvider { get; set; } = GlobalDefinition.FormatProvider;
         protected Encoding ContentEncoding { get; set; }
         public ILogger RuntimeLogger { get; set; }
         abstract protected Uri BuildUrl(DateTime transactionDate);
