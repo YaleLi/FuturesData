@@ -1,4 +1,4 @@
-namespace ModelFirstTest
+namespace DataType
 {
     using System;
     using System.Collections.Generic;

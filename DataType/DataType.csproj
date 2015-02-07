@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="ContractTransactionInfo.cs" />
     <Compile Include="DealerPositionInfo.cs" />
+    <Compile Include="GlobalDefinition.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

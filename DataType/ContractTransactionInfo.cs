@@ -1,4 +1,6 @@
-namespace ModelFirstTest
+using DataType;
+
+namespace DataType
 {
     using System;
     using System.Collections.Generic;
@@ -48,7 +50,24 @@ namespace ModelFirstTest
             Volume = volume;
             Position = position;
 
-            ID = Exchange + "_" + Commodity + Contract + "_" + TransactionDate.ToString("yyyyMMdd");
+            ID = Exchange + "_" + Commodity + Contract + "_" + TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider);
+        }
+
+        public bool Equals(ContractTransactionInfo another)
+        {
+            if (null == another)
+            {
+                return false;
+            }
+
+            if (this == another)
+            {
+                return true;
+            }
+            return TransactionDate.Equals(another.TransactionDate) && Commodity.Equals(another.Commodity) && 
+                   OpenPrice.Equals(another.OpenPrice) && HighPrice.Equals(another.HighPrice) && 
+                   LowPrice.Equals(another.LowPrice) && ClosePrice.Equals(another.ClosePrice) && SettlePrice.Equals(another.SettlePrice) &&
+                   Volume==another.Volume && Position==another.Volume;
         }
     }
 }
