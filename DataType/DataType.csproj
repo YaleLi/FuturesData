@@ -52,6 +52,7 @@
     <Compile Include="DealerPositionInfo.cs" />
     <Compile Include="GlobalDefinition.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HtmlParseException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

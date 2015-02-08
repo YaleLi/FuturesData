@@ -1,4 +1,6 @@
-﻿namespace FuturesDataTest
+﻿using DataCrawler;
+
+namespace FuturesDataTest
 {
     using System;
     using System.IO;
@@ -172,6 +174,15 @@
 
             webText = TestUtility.RetrieveWebPage(new DateTime(2015, 2, 3), new DceDailyTransactionCrawler());
             Assert.IsFalse(localText.Equals(webText));
+        }
+
+        [TestMethod]
+        public void DownloadDceCommodityCodeTest()
+        {
+            string webText = TestUtility.RetrieveWebPage(new DateTime(2015, 2, 3), new DceCommodityCodeCrawler());
+            //var localText = TestUtility.LoadLocalFile("..\\..\\Data\\dce_commodity_code.htm", Encoding.UTF8);
+
+            Assert.IsTrue(webText.IndexOf("select name=\"Pu00021_Input.variety\"")>0);
         }
     }
 }

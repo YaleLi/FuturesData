@@ -52,19 +52,19 @@ namespace FuturesDataTest
             var parser = new ShfeTransactionParser();
             var listFromWeb = parser.GetContractList(webText, date);
 
-            var itemList = new List<ContractTransactionInfo>();
-            itemList.Add(new ContractTransactionInfo(date, "shfe", "cu", "1403", 51900, 52080, 51670, 51770, 51890,
+            var testData = new List<ContractTransactionInfo>();
+            testData.Add(new ContractTransactionInfo(date, "shfe", "cu", "1403", 51900, 52080, 51670, 51770, 51890,
                 243308, 220868));
-            itemList.Add(new ContractTransactionInfo(date, "shfe", "al", "1412", 13990, 13990, 13960, 13960, 13980, 6,
+            testData.Add(new ContractTransactionInfo(date, "shfe", "al", "1412", 13990, 13990, 13960, 13960, 13980, 6,
                 14));
-            itemList.Add(new ContractTransactionInfo(date, "shfe", "pb", "1409", -1, -1, -1, 14550, 14550, 0, 0));
-            itemList.Add(new ContractTransactionInfo(date, "shfe", "fu", "1404", -1, -1, -1, 4150, 4150, 0, 12));
-            itemList.Add(new ContractTransactionInfo(date, "shfe", "ru", "1411", 17510, 17640, 17290, 17290, 17465, 130,
+            testData.Add(new ContractTransactionInfo(date, "shfe", "pb", "1409", -1, -1, -1, 14550, 14550, 0, 0));
+            testData.Add(new ContractTransactionInfo(date, "shfe", "fu", "1404", -1, -1, -1, 4150, 4150, 0, 12));
+            testData.Add(new ContractTransactionInfo(date, "shfe", "ru", "1411", 17510, 17640, 17290, 17290, 17465, 130,
                 1060));
-            itemList.Add(new ContractTransactionInfo(date, "shfe", "au", "1406", 245.5, 248.35, 244.65, 246.90, 246.35,
+            testData.Add(new ContractTransactionInfo(date, "shfe", "au", "1406", 245.5, 248.35, 244.65, 246.90, 246.35,
                 240660, 170620));
 
-            ValidateValues(itemList, listFromWeb);
+            ValidateValues(testData, listFromWeb);
         }
 
         [TestMethod]
@@ -107,6 +107,94 @@ namespace FuturesDataTest
 
             Assert.IsTrue(listFromWeb.Count == 0);
         }
+
+        [TestMethod]
+        public void DceCommodityCodeParseTest()
+        {
+            string code1 = DceCommodityCodeHelper.GetCommodityCode("豆一");
+            string code2 = DceCommodityCodeHelper.GetCommodityCode("大豆");
+
+            Assert.IsTrue(code1.Equals("a") && code2.Equals("s"));
+        }
+        [TestMethod]
+        public void DceTransactionContractListTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new DceDailyTransactionCrawler());
+            var parser = new DceTransactionParser();
+            var listFromWeb = parser.GetContractList(webText, date);
+
+            var testData = new List<ContractTransactionInfo>();
+
+            testData.Add(new ContractTransactionInfo(date, "dce", "a", "1401", -1, -1, -1, 4425, 4425, 0, 22));
+            testData.Add(new ContractTransactionInfo(date, "dce", "fb", "1405", 69.45, 69.55, 66.65, 66.75, 67.25, 348528, 88992));
+            testData.Add(new ContractTransactionInfo(date, "dce", "y", "1412", -1, -1, -1, 6992, 6992, 0, 14));
+            testData.Add(new ContractTransactionInfo(date, "dce", "bb", "1409", 123.4, 123.9, 119.45, 121.5, 121.45, 46, 194));
+            testData.Add(new ContractTransactionInfo(date, "dce", "fb", "1412", -1, -1, -1, 68.2, 68.2, 0, 2));
+            testData.Add(new ContractTransactionInfo(date, "dce", "i", "1409", 878, 882, 871, 873, 874, 9560, 37276));
+            testData.Add(new ContractTransactionInfo(date, "dce", "l", "1409", 10750, 10800, 10725, 10755, 10760, 10508, 28282));
+
+            ValidateValues(testData, listFromWeb);
+        }
+
+        [TestMethod]
+        public void DceHolidayTransactionContractListTest()
+        {
+            DateTime date = new DateTime(2015, 1, 1);
+            string webText = TestUtility.RetrieveWebPage(date, new DceDailyTransactionCrawler());
+            var parser = new DceTransactionParser();
+            var listFromWeb = parser.GetContractList(webText, date);
+
+            Assert.IsTrue(listFromWeb.Count == 0);
+        }
+
+
+        [TestMethod]
+        public void DceCommodityDealerPositionParserTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new DceDealerPositionCrawler("a", ""));
+            var parser = new DceDealerPositionParser();
+            var listFromWeb = parser.GetDealerPositionList(webText, date);
+
+            var testData = new List<SingleDealerPosition>();
+            testData.Add(new SingleDealerPosition(date, "a", "", InformationType.VolumeInfo, 1, "国投期货", 5167));
+            testData.Add(new SingleDealerPosition(date, "a", "", InformationType.SellInfo, 145, "京都期货", 0));
+            testData.Add(new SingleDealerPosition(date, "a", "", InformationType.BuyInfo, 141, "深圳金汇", 0));
+            testData.Add(new SingleDealerPosition(date, "a", "", InformationType.VolumeInfo, 145, "平安期货", 2));
+            testData.Add(new SingleDealerPosition(date, "a", "", InformationType.BuyInfo, 25, "南华期货", 1024));
+
+            ValidateValues(testData, listFromWeb);
+        }
+
+        [TestMethod]
+        public void DceContractDealerPositionParserTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new DceDealerPositionCrawler("a", "1409"));
+            var parser = new DceDealerPositionParser();
+            var listFromWeb = parser.GetDealerPositionList(webText, date);
+
+            var testData = new List<SingleDealerPosition>();
+            testData.Add(new SingleDealerPosition(date, "a", "1409", InformationType.VolumeInfo, 1, "国投期货", 1649));
+            testData.Add(new SingleDealerPosition(date, "a", "1409", InformationType.SellInfo, 121, "中信新际", 0));
+            testData.Add(new SingleDealerPosition(date, "a", "1409", InformationType.BuyInfo, 120, "先融期货", 0));
+            testData.Add(new SingleDealerPosition(date, "a", "1409", InformationType.VolumeInfo, 123, "天富期货", 1));
+            testData.Add(new SingleDealerPosition(date, "a", "1409", InformationType.BuyInfo, 10, "新湖期货", 1075));
+
+            ValidateValues(testData, listFromWeb);
+        }
+
+        [TestMethod]
+        public void DceHolidayContractDealerPositionParserTest()
+        {
+            DateTime date = new DateTime(2015, 1, 1);
+            string webText = TestUtility.RetrieveWebPage(date, new DceDealerPositionCrawler("a", "1409"));
+            var parser = new DceDealerPositionParser();
+            var listFromWeb = parser.GetDealerPositionList(webText, date);
+
+            Assert.IsTrue(listFromWeb.Count == 0);
+        }
+
     }
 }
-

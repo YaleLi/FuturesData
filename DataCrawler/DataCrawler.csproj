@@ -46,6 +46,7 @@
     <Compile Include="CzceDataCrawler.cs" />
     <Compile Include="CzceDealerPositionCrawler.cs" />
     <Compile Include="DataCrawler.cs" />
+    <Compile Include="DceCommodityCodeCrawler.cs" />
     <Compile Include="DceDailyTransactionCrawler.cs" />
     <Compile Include="DceDataCrawler.cs" />
     <Compile Include="DceDealerPositionCrawler.cs" />
