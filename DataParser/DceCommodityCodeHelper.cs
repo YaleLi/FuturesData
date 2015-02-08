@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataCrawler;
 using DataType;
+using FuturesDataCrawler;
 using HtmlAgilityPack;
 
 namespace DataParser
 {
-    public class DceCommodityCodeHelper
+    public static class DceCommodityCodeHelper
     {
         private static Dictionary<string, string> CodeMap { get; set; }=null;
 

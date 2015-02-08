@@ -1,6 +1,4 @@
-﻿using DataCrawler;
-
-namespace FuturesDataTest
+﻿namespace FuturesDataTest
 {
     using System;
     using System.IO;

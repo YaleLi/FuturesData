@@ -11,7 +11,7 @@ namespace FuturesDataTest
     [TestClass]
     public class DataParserTest
     {
-        private void ValidateValues(List<ContractTransactionInfo> contracts, List<ContractTransactionInfo> webData)
+        private void ValidateValues(IEnumerable<ContractTransactionInfo> contracts, IEnumerable<ContractTransactionInfo> webData)
         {
             foreach (var contract in contracts)
             {
@@ -29,7 +29,7 @@ namespace FuturesDataTest
             }
         }
 
-        private void ValidateValues(List<SingleDealerPosition> predifined, List<DealerPositionInfo> webData)
+        private void ValidateValues(IEnumerable<SingleDealerPosition> predifined, IEnumerable<DealerPositionInfo> webData)
         {
             foreach (var testData in predifined)
             {

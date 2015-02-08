@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -13,21 +14,21 @@ namespace DataParser
     public class DceTransactionParser : ITransactionParser
     {
         private HtmlDocument htmlParser = new HtmlDocument();
-        public List<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate)
+        public Collection<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate)
         {
             if (string.IsNullOrWhiteSpace(htmlText))
             {
-                return new List<ContractTransactionInfo>();
+                return new Collection<ContractTransactionInfo>();
             }
 
             htmlParser.LoadHtml(htmlText);
             var tableContent = htmlParser.DocumentNode.SelectNodes("//table[@class=\"table\"]");
             if (null == tableContent)
             {
-                return new List<ContractTransactionInfo>();
+                return new Collection<ContractTransactionInfo>();
             }
 
-            var result = new List<ContractTransactionInfo>();
+            var result = new Collection<ContractTransactionInfo>();
             foreach (var row in tableContent.Descendants("tr").Skip(1))
             {
                 var columns = row.Descendants("td").ToArray();
@@ -54,7 +55,7 @@ namespace DataParser
             return result;
         }
 
-        public List<ContractTransactionInfo> GetTopContracts(string htmlText, int count, DateTime transactionDate)
+        public Collection<ContractTransactionInfo> GetTopContracts(string htmlText, int count, DateTime transactionDate)
         {
             throw new NotImplementedException();
         }

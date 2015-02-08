@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace DataParser
     public class DceDealerPositionParser : IDealerPositionParser
     {
         private HtmlDocument htmlParser = new HtmlDocument();
-        public List<DealerPositionInfo> GetDealerPositionList(string htmlText, DateTime transactionDate)
+        public Collection<DealerPositionInfo> GetDealerPositionList(string htmlText, DateTime transactionDate)
         {
             if (string.IsNullOrWhiteSpace(htmlText))
             {
-                return new List<DealerPositionInfo>();
+                return new Collection<DealerPositionInfo>();
             }
 
             htmlParser.LoadHtml(htmlText);
@@ -26,13 +27,13 @@ namespace DataParser
             GetCommodityContract(htmlParser, out commodity, out month);
             if (string.IsNullOrWhiteSpace(commodity))
             {
-                return new List<DealerPositionInfo>();
+                return new Collection<DealerPositionInfo>();
             }
 
             var tableContent = htmlParser.DocumentNode.SelectNodes("//table[@class=\"table\"]");
             if (null == tableContent || tableContent.Count<2)
             {
-                return new List<DealerPositionInfo>();
+                return new Collection<DealerPositionInfo>();
             }
 
             var rows = tableContent[1].Descendants("tr").Skip(1);
@@ -52,13 +53,13 @@ namespace DataParser
                 AppendDealers(columns, 8, ref sDealers);
             }
 
-            var result = new List<DealerPositionInfo>();
+            var result = new Collection<DealerPositionInfo>();
             result.Add(new DealerPositionInfo(transactionDate, commodity, month, vDealers.ToString(), bDealers.ToString(), sDealers.ToString()));
 
             return result;
         }
 
-        private void AppendDealers(IEnumerable<HtmlNode> columns, int start, ref StringBuilder dealers)
+        private static void AppendDealers(IEnumerable<HtmlNode> columns, int start, ref StringBuilder dealers)
         {
             if (null==dealers)
             {
@@ -77,7 +78,7 @@ namespace DataParser
             }
         }
 
-        private void GetCommodityContract(HtmlDocument parser, out string commodity, out string month)
+        private static void GetCommodityContract(HtmlDocument parser, out string commodity, out string month)
         {
             commodity = "";
             month = "";
@@ -91,7 +92,7 @@ namespace DataParser
                 return;
             }
             var nodeText = nodes.First().InnerText;
-            int start = nodeText.IndexOf("：")+1;
+            int start = nodeText.IndexOf("：", StringComparison.Ordinal)+1;
             int end = start+1;
             while (start > 0 && end<nodeText.Length && !Char.IsWhiteSpace(nodeText[end]))
             {

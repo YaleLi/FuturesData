@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,18 +14,18 @@ namespace DataParser
 {
     public class ShfeTransactionParser : ITransactionParser
     {
-        public List<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate)
+        public Collection<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate)
         {
-            var emptyResult = new List<ContractTransactionInfo>();
+            var emptyResult = new Collection<ContractTransactionInfo>();
 
-            if (string.IsNullOrEmpty(htmlText.Trim()))
+            if (string.IsNullOrWhiteSpace(htmlText))
             {
                 return emptyResult;
             }
 
 
             int start = htmlText.IndexOf('[');
-            int end = htmlText.IndexOf("总计");
+            int end = htmlText.IndexOf("总计", StringComparison.Ordinal);
             if (-1 == start || -1==end)
             {
                 return emptyResult;
@@ -42,15 +43,15 @@ namespace DataParser
             return ParseValidContent(htmlText.Substring(start, end - start + 1), transactionDate);
 
         }
-        public List<ContractTransactionInfo> GetTopContracts(string htmlText, int count, DateTime transactionDate)
+        public Collection<ContractTransactionInfo> GetTopContracts(string htmlText, int count, DateTime transactionDate)
         {
             var contracts = GetContractList(htmlText, transactionDate);
             if (null==contracts || contracts.Count==0)
             {
-                return new List<ContractTransactionInfo>();
+                return new Collection<ContractTransactionInfo>();
             }
 
-            var topContracts = new List<ContractTransactionInfo>();
+            var topContracts = new Collection<ContractTransactionInfo>();
 
             var contractGroups = contracts.GroupBy(c => c.Commodity);
             foreach (var group in contractGroups)
@@ -69,9 +70,9 @@ namespace DataParser
             return topContracts;
         }
 
-        private List<ContractTransactionInfo> ParseValidContent(string content, DateTime transactionDate)
+        private static Collection<ContractTransactionInfo> ParseValidContent(string content, DateTime transactionDate)
         {
-            var result = new List<ContractTransactionInfo>();
+            var result = new Collection<ContractTransactionInfo>();
             if (string.IsNullOrEmpty(content))
             {
                 return result;
@@ -101,44 +102,37 @@ namespace DataParser
             return result;
         }
 
-        private ContractTransactionInfo BuildContractInfo(Dictionary<string, string> lineDictionary, DateTime transactionDate)
+        private static ContractTransactionInfo BuildContractInfo(Dictionary<string, string> lineDictionary, DateTime transactionDate)
         {
-            try
-            {
-                if (null == lineDictionary || lineDictionary.Count == 0)
-                {
-                    return null;
-                }
-                int index = lineDictionary["PRODUCTID"].IndexOf('_');
-                if (index < 0)
-                {
-                    return null;
-                }
-                string commodity = lineDictionary["PRODUCTID"].Substring(0, index);
-
-                string month = lineDictionary["DELIVERYMONTH"];
-                if (string.IsNullOrEmpty(month) || month.Equals("小计"))
-                {
-                    return null;
-                }
-
-                double open = DoubleUtility.Parse(lineDictionary["OPENPRICE"], GlobalDefinition.FormatProvider, -1);
-                double high = DoubleUtility.Parse(lineDictionary["HIGHESTPRICE"], GlobalDefinition.FormatProvider, -1);
-                double low = DoubleUtility.Parse(lineDictionary["LOWESTPRICE"], GlobalDefinition.FormatProvider, -1);
-                double close = DoubleUtility.Parse(lineDictionary["CLOSEPRICE"], GlobalDefinition.FormatProvider, -1);
-                double settle = DoubleUtility.Parse(lineDictionary["SETTLEMENTPRICE"], GlobalDefinition.FormatProvider,
-                    -1);
-                int volume = Int32.Parse(lineDictionary["VOLUME"], NumberStyles.Any, GlobalDefinition.FormatProvider);
-                int position = Int32.Parse(lineDictionary["OPENINTEREST"], NumberStyles.Any,
-                    GlobalDefinition.FormatProvider);
-
-                return new ContractTransactionInfo(transactionDate, "shfe", commodity, month, open, high, low, close,
-                    settle, volume, position);
-            }
-            catch (KeyNotFoundException e)
+            if (null == lineDictionary || lineDictionary.Count == 0)
             {
                 return null;
             }
+            int index = lineDictionary["PRODUCTID"].IndexOf('_');
+            if (index < 0)
+            {
+                return null;
+            }
+            string commodity = lineDictionary["PRODUCTID"].Substring(0, index);
+
+            string month = lineDictionary["DELIVERYMONTH"];
+            if (string.IsNullOrEmpty(month) || month.Equals("小计"))
+            {
+                return null;
+            }
+
+            double open = DoubleUtility.Parse(lineDictionary["OPENPRICE"], GlobalDefinition.FormatProvider, -1);
+            double high = DoubleUtility.Parse(lineDictionary["HIGHESTPRICE"], GlobalDefinition.FormatProvider, -1);
+            double low = DoubleUtility.Parse(lineDictionary["LOWESTPRICE"], GlobalDefinition.FormatProvider, -1);
+            double close = DoubleUtility.Parse(lineDictionary["CLOSEPRICE"], GlobalDefinition.FormatProvider, -1);
+            double settle = DoubleUtility.Parse(lineDictionary["SETTLEMENTPRICE"], GlobalDefinition.FormatProvider,
+                -1);
+            int volume = Int32.Parse(lineDictionary["VOLUME"], NumberStyles.Any, GlobalDefinition.FormatProvider);
+            int position = Int32.Parse(lineDictionary["OPENINTEREST"], NumberStyles.Any,
+                GlobalDefinition.FormatProvider);
+
+            return new ContractTransactionInfo(transactionDate, "shfe", commodity, month, open, high, low, close,
+                settle, volume, position);
         }
     }
 }

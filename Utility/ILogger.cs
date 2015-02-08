@@ -11,6 +11,6 @@ namespace Utility
     {
         void Log(string message);
 
-        void Log(Exception e);
+        void Log(Exception runtimeException);
     }
 }

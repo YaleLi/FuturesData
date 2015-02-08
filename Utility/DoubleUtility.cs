@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Utility
 {
-    public class DoubleUtility
+    public static class DoubleUtility
     {
         public static bool Equals(double value1, double value2)
         {

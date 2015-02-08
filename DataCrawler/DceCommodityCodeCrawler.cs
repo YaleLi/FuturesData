@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FuturesDataCrawler;
 
-namespace DataCrawler
+namespace FuturesDataCrawler
 {
     public class DceCommodityCodeCrawler : DceDataCrawler
     {

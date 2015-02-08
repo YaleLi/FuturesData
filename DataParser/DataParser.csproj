@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,6 +54,7 @@
     <Compile Include="DceCommodityCodeHelper.cs" />
     <Compile Include="DceDealerPositionParser.cs" />
     <Compile Include="DceTransactionParser.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDealerPositionParser.cs" />
     <Compile Include="ITransactionParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
