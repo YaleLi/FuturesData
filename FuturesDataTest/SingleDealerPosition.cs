@@ -34,7 +34,7 @@ namespace FuturesDataTest
             int rank, string dealer, int amount)
         {
             TransactionDate = transactionDate;
-            Commodity = commodity;
+            Commodity = commodity.ToLower();
             Month = month;
             DealerInformationType = type;
             Rank = rank;

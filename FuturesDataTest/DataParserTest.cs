@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using FuturesDataCrawler;
 using DataParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -36,7 +37,8 @@ namespace FuturesDataTest
                 var dealerInfo =
                     webData.Where(info => info.Commodity.Equals(testData.Commodity) && info.Month.Equals(testData.Month));
 
-                if (null == dealerInfo || dealerInfo.Count() != 1 || !testData.ExistIn(dealerInfo.First()))
+                int count = dealerInfo.Count();
+                if (null == dealerInfo || count != 1 || !testData.ExistIn(dealerInfo.First()))
                 {
                     Assert.Fail();
                     break;
@@ -196,5 +198,160 @@ namespace FuturesDataTest
             Assert.IsTrue(listFromWeb.Count == 0);
         }
 
+        [TestMethod]
+        public void CzceTransactionContractListTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new CzceDailyTransactionCrawler());
+            var parser = new CzceTransactionParser();
+            var listFromWeb = parser.GetContractList(webText, date);
+
+            var testData = new List<ContractTransactionInfo>();
+            testData.Add(new ContractTransactionInfo(date, "czce", "cf", "401", 19080, 19080, 19080, 19080, 19080, 582,896));
+            testData.Add(new ContractTransactionInfo(date, "czce", "wH", "411", 0, 0, 0, 0, 2742, 0, 6));
+            testData.Add(new ContractTransactionInfo(date, "czce", "TA", "405", 7210, 7212, 7136, 7146, 7174, 238492, 422160));
+            testData.Add(new ContractTransactionInfo(date, "czce", "pm", "409", 2551, 2551, 2551, 2551, 2551, 2, 42));
+
+            ValidateValues(testData, listFromWeb);
+
+        }
+
+        [TestMethod]
+        public void CzceHolidayTransactionContractListTest()
+        {
+            DateTime date = new DateTime(2015, 1, 1);
+            string webText = TestUtility.RetrieveWebPage(date, new CzceDailyTransactionCrawler());
+            var parser = new CzceTransactionParser();
+            var listFromWeb = parser.GetContractList(webText, date);
+
+            Assert.IsTrue(listFromWeb.Count == 0);
+        }
+
+        [TestMethod]
+        public void CzceContractDealerPositionParserTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new CzceDealerPositionCrawler());
+            var parser = new CzceDealerPositionParser();
+            var listFromWeb = parser.GetDealerPositionList(webText, date);
+
+            var testData = new List<SingleDealerPosition>();
+            testData.Add(new SingleDealerPosition(date, "CF", "", InformationType.VolumeInfo, 1, "光大期货", 5071));
+            testData.Add(new SingleDealerPosition(date, "RS", "", InformationType.BuyInfo, 8, "徽商期货", 1));
+            testData.Add(new SingleDealerPosition(date, "CF", "401", InformationType.VolumeInfo, 5, "上海金源", 1));
+            testData.Add(new SingleDealerPosition(date, "CF", "401", InformationType.BuyInfo, 9, "北京中期", 3));
+            testData.Add(new SingleDealerPosition(date, "FG", "401", InformationType.SellInfo, 4, "中证期货", 1));
+            testData.Add(new SingleDealerPosition(date, "TA", "401", InformationType.SellInfo, 20, "浙江中大", 1430));
+            testData.Add(new SingleDealerPosition(date, "TC", "401", InformationType.SellInfo, 3, "光大期货", 1));
+            testData.Add(new SingleDealerPosition(date, "SR", "405", InformationType.BuyInfo, 3, "中粮期货", 16869));
+            testData.Add(new SingleDealerPosition(date, "wh", "405", InformationType.SellInfo, 20, "美尔雅", 1066));
+
+            ValidateValues(testData, listFromWeb);
+        }
+
+        [TestMethod]
+        public void CzceHolidayContractDealerPositionParserTest()
+        {
+            DateTime date = new DateTime(2015, 1, 1);
+            string webText = TestUtility.RetrieveWebPage(date, new CzceDealerPositionCrawler());
+            var parser = new CzceDealerPositionParser();
+            var listFromWeb = parser.GetDealerPositionList(webText, date);
+
+            Assert.IsTrue(listFromWeb.Count == 0);
+        }
+
+
+        [TestMethod]
+        public void ShfeTopTransactionContractTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new ShfeDailyTransactionCrawler());
+            var parser = new ShfeTransactionParser();
+
+            var listFromWeb = parser.GetTopContracts(webText, 2, date);
+
+            string[] topContracts = new string[]
+            {
+                "cu1403", "cu1404", "al1403", "al1404", "zn1403", "zn1404",
+                "pb1401", "pb1402", "au1412", "au1406", "ag1401", "ag1406",
+                "rb1405", "rb1410", "ru1405", "ru1409"
+            };
+
+            var listOfCommodity = listFromWeb.GroupBy(c => c.Commodity);
+            foreach (var contracts in listOfCommodity)
+            {
+                if (contracts.Count() > 2)
+                {
+                    Assert.Fail();
+                }
+            }
+
+            var webTopContracts = listFromWeb.Select(c => c.Commodity + c.Contract);
+            var joinResult = webTopContracts.Join(topContracts, s => s, s => s, (s1, s2) => s1);
+            int jc = joinResult.Count();
+            Assert.IsTrue(joinResult.Count() == topContracts.Length);
+        }
+
+        [TestMethod]
+        public void DceTopTransactionContractTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new DceDailyTransactionCrawler());
+            var parser = new DceTransactionParser();
+
+            var listFromWeb = parser.GetTopContracts(webText, 2, date);
+
+            string[] topContracts = new string[]
+            {
+                "a1405", "a1409", "c1405", "c1409", "bb1405", "fb1405",
+                "fb1409", "jd1405", "jd1409", "m1405", "m1409", "y1405", "y1409"
+            };
+
+            var listOfCommodity = listFromWeb.GroupBy(c => c.Commodity);
+            foreach (var contracts in listOfCommodity)
+            {
+                if (contracts.Count() > 2)
+                {
+                    Assert.Fail();
+                }
+            }
+
+            var webTopContracts = listFromWeb.Select(c => c.Commodity + c.Contract);
+            var joinResult = webTopContracts.Join(topContracts, s => s, s => s, (s1, s2) => s1);
+            int jc = joinResult.Count();
+            Assert.IsTrue(joinResult.Count() == topContracts.Length);
+        }
+
+        [TestMethod]
+        public void CzceTopTransactionContractTest()
+        {
+            DateTime date = new DateTime(2014, 1, 6);
+            string webText = TestUtility.RetrieveWebPage(date, new CzceDailyTransactionCrawler());
+            var parser = new CzceTransactionParser();
+
+            var listFromWeb = parser.GetTopContracts(webText, 2, date);
+
+
+            string[] topContracts = new string[]
+            {
+                "cf405", "cf411", "fg405", "fg409", "me405", "me409",
+                "pm405", "pm401", "rm405", "rm409", "ta405", "ta409",
+                "wh405", "wh401"
+            };
+
+            var listOfCommodity = listFromWeb.GroupBy(c => c.Commodity);
+            foreach (var contracts in listOfCommodity)
+            {
+                if (contracts.Count() > 2)
+                {
+                    Assert.Fail();
+                }
+            }
+
+            var webTopContracts = listFromWeb.Select(c => c.Commodity + c.Contract);
+            var joinResult = webTopContracts.Join(topContracts, s => s, s => s, (s1, s2) => s1);
+            int jc = joinResult.Count();
+            Assert.IsTrue(joinResult.Count() == topContracts.Length);
+        }
     }
 }

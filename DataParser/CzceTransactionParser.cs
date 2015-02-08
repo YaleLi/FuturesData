@@ -11,7 +11,7 @@ using Utility;
 
 namespace DataParser
 {
-    public class DceTransactionParser : ITransactionParser
+    public class CzceTransactionParser : ITransactionParser
     {
         private HtmlDocument htmlParser = new HtmlDocument();
         public Collection<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate)
@@ -20,38 +20,43 @@ namespace DataParser
             {
                 return new Collection<ContractTransactionInfo>();
             }
-
             htmlParser.LoadHtml(htmlText);
-            var tableContent = htmlParser.DocumentNode.SelectNodes("//table[@class=\"table\"]");
-            if (null == tableContent)
+            var table = htmlParser.DocumentNode.SelectNodes("//table[@id=\"senfe\"]");
+            if (null == table)
             {
-                return new Collection<ContractTransactionInfo>();
+                return  new Collection<ContractTransactionInfo>();
             }
 
             var result = new Collection<ContractTransactionInfo>();
-            foreach (var row in tableContent.Descendants("tr").Skip(1))
+            var rows = table.Descendants("tr").Skip(1);
+            foreach (var row in rows)
             {
                 var columns = row.Descendants("td").ToArray();
-                if (!Char.IsDigit(columns[1].InnerText.First()))
+                if (null == columns || columns.Count() == 0 || !Char.IsDigit(columns[0].InnerText.Last()))
                 {
                     continue;
                 }
 
-                string commodity = DceCommodityCodeHelper.GetCommodityCode(columns[0].InnerText);
-                if (string.IsNullOrWhiteSpace(commodity))
+                int index = columns[0].InnerText.Length - 1;
+                while (index>=0 && Char.IsDigit(columns[0].InnerText[index]))
                 {
-                    throw new HtmlParseException("DCE Daily Transaction Parse Error at" + transactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider));
+                    --index;
                 }
-                string month = columns[1].InnerText.Trim();
+                string commodity = columns[0].InnerText.Substring(0, index + 1);
+                string month = columns[0].InnerText.Substring(index + 1);
+
                 double open = DoubleUtility.Parse(columns[2].InnerText, GlobalDefinition.FormatProvider, -1);
                 double high = DoubleUtility.Parse(columns[3].InnerText, GlobalDefinition.FormatProvider, -1);
                 double low = DoubleUtility.Parse(columns[4].InnerText, GlobalDefinition.FormatProvider, -1);
                 double close = DoubleUtility.Parse(columns[5].InnerText, GlobalDefinition.FormatProvider, -1);
-                double settle = DoubleUtility.Parse(columns[7].InnerText, GlobalDefinition.FormatProvider, -1);
-                int volume = Int32.Parse(columns[10].InnerText, NumberStyles.Any, GlobalDefinition.FormatProvider);
-                int position = Int32.Parse(columns[11].InnerText, NumberStyles.Any, GlobalDefinition.FormatProvider);
-                result.Add(new ContractTransactionInfo(transactionDate, "dce", commodity, month, open, high, low, close, settle, volume, position));
+                double settle = DoubleUtility.Parse(columns[6].InnerText, GlobalDefinition.FormatProvider, -1);
+
+                int volume = Int32.Parse(columns[9].InnerText, NumberStyles.Any, GlobalDefinition.FormatProvider);
+                int position = Int32.Parse(columns[10].InnerText, NumberStyles.Any, GlobalDefinition.FormatProvider);
+
+                result.Add(new ContractTransactionInfo(transactionDate, "czce", commodity, month, open, high, low, close, settle, volume, position));
             }
+
             return result;
         }
 

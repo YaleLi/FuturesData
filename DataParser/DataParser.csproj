@@ -51,9 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CzceDealerPositionParser.cs" />
+    <Compile Include="CzceTransactionParser.cs" />
     <Compile Include="DceCommodityCodeHelper.cs" />
     <Compile Include="DceDealerPositionParser.cs" />
     <Compile Include="DceTransactionParser.cs" />
+    <Compile Include="DealerPositionParserHelper.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDealerPositionParser.cs" />
     <Compile Include="ITransactionParser.cs" />

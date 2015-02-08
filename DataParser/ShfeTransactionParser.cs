@@ -46,28 +46,8 @@ namespace DataParser
         public Collection<ContractTransactionInfo> GetTopContracts(string htmlText, int count, DateTime transactionDate)
         {
             var contracts = GetContractList(htmlText, transactionDate);
-            if (null==contracts || contracts.Count==0)
-            {
-                return new Collection<ContractTransactionInfo>();
-            }
 
-            var topContracts = new Collection<ContractTransactionInfo>();
-
-            var contractGroups = contracts.GroupBy(c => c.Commodity);
-            foreach (var group in contractGroups)
-            {
-                var sortedContracts = group.OrderByDescending(c => c.Volume).ToArray();
-
-                for (int i = 0; i < count; i++)
-                {
-                    if (i < sortedContracts.Count())
-                    {
-                        topContracts.Add(sortedContracts[i]);
-                    }
-                }
-            }
-
-            return topContracts;
+            return  DealerPositionParserHelper.GetTopContracts(contracts, count);
         }
 
         private static Collection<ContractTransactionInfo> ParseValidContent(string content, DateTime transactionDate)
