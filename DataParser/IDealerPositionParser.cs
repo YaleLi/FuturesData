@@ -8,7 +8,7 @@ using DataType;
 
 namespace DataParser
 {
-    interface IDealerPositionParser
+    public interface IDealerPositionParser
     {
         Collection<DealerPositionInfo> GetDealerPositionList(string htmlText, DateTime transactionDate);
     }

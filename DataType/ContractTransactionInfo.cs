@@ -13,30 +13,31 @@ namespace DataType
     [Table("ContractTransactionInfo")]
     public partial class ContractTransactionInfo
     {
-        public string ID { get; private set; }
+        public string ID { get; set; }
 
-        public DateTime TransactionDate { get; private set; }
+        public DateTime TransactionDate { get; set; }
 
-        public string Commodity { get; private set; }
+        public string Commodity { get; set; }
 
-        public string Exchange { get; private set; }
+        public string Exchange { get; set; }
 
-        public string Contract { get; private set; }
+        public string Contract { get; set; }
 
-        public double OpenPrice { get; private set; }
+        public double OpenPrice { get;  set; }
 
         public double HighPrice { get; set; }
 
-        public double LowPrice { get; private set; }
+        public double LowPrice { get;  set; }
 
-        public double ClosePrice { get; private set; }
+        public double ClosePrice { get;  set; }
 
-        public double SettlePrice { get; private set; }
+        public double SettlePrice { get;  set; }
 
-        public int Volume { get; private set; }
+        public int Volume { get;  set; }
 
-        public int Position { get; private set; }
+        public int Position { get;  set; }
 
+        public ContractTransactionInfo() { }
         public ContractTransactionInfo(DateTime date, string exchange, string commodity, string contract, double open, 
                 double high, double low, double close, double settle, int volume, int position)
         {

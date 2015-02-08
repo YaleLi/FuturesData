@@ -8,7 +8,7 @@ using DataType;
 
 namespace DataParser
 {
-    interface ITransactionParser
+    public interface ITransactionParser
     {
         Collection<ContractTransactionInfo> GetContractList(string htmlText, DateTime transactionDate);
         Collection<ContractTransactionInfo> GetTopContracts(string htmlText, int count, DateTime transactionDate);

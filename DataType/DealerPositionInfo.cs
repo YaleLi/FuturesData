@@ -11,20 +11,21 @@ namespace DataType
     [Table("DealerPositionInfo")]
     public partial class DealerPositionInfo
     {
-        public string Id { get; private set; }
+        public string Id { get;  set; }
 
-        public DateTime TransactionDate { get; private set; }
+        public DateTime TransactionDate { get;  set; }
 
-        public string Commodity { get; private set; }
+        public string Commodity { get;  set; }
 
-        public string Month { get; private set; }
+        public string Month { get;  set; }
 
-        public string VolumeDealers { get; private set; }
+        public string VolumeDealers { get;  set; }
 
-        public string BuyDealers { get; private set; }
+        public string BuyDealers { get;  set; }
 
-        public string SellDealers { get; private set; }
+        public string SellDealers { get;  set; }
 
+        public DealerPositionInfo() { }
         public DealerPositionInfo(DateTime transactionDate, string commodity, string month, string volumeDealers,
             string buyDealers, string sellDealers)
         {

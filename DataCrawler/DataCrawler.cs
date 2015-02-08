@@ -65,6 +65,7 @@ namespace FuturesDataCrawler
             {
                 if (date.DayOfWeek== DayOfWeek.Saturday || date.DayOfWeek==DayOfWeek.Sunday)
                 {
+                    date = date.AddDays(-1);
                     continue;
                 }
                 content = PullData(BuildUrl(date));
