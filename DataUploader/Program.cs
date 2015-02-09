@@ -1,13 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using DataParser;
 using DataType;
 using FuturesDataCrawler;
+using Utility;
 
 namespace DataUploader
 {
+    class ConsoleLogger : ILogger
+    {
+        public void Log(string message)
+        {
+            System.Console.WriteLine(message);
+        }
+
+        public void Log(Exception runtimeException)
+        {
+            System.Console.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception====XXXXXXXXXXXXXXXXXXXXX");
+            System.Console.WriteLine(runtimeException.Message);
+            System.Console.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception End====XXXXXXXXXXXXXXXXXXXXX");
+        }
+    }
     class Program
     {
         #region useless
@@ -108,6 +124,9 @@ namespace DataUploader
     */
         #endregion
 
+        public static ConsoleLogger Logger { get; }= new ConsoleLogger();
+        
+
         private static void WriteTransactionDataToStore(IEnumerable<ContractTransactionInfo> contracts, FuturesDataStore dataStore)
         {
             foreach (var contract in contracts)
@@ -149,6 +168,7 @@ namespace DataUploader
                     if (!webPos.Equals(pos))
                     {
                         System.Console.WriteLine("data store (DealerPosition): " + webPos.Id + "not equal to online");
+                        dataStore.DealerPositionInfoes.AddOrUpdate(pos);
                     }
                 }
             }
@@ -167,6 +187,7 @@ namespace DataUploader
             foreach (var contract in tops)
             {
                 var dcePositionCrawler = new DceDealerPositionCrawler(contract.Commodity, contract.Contract);
+                dcePositionCrawler.RuntimeLogger = Logger;
 
                 dcePositionCrawler.PullData(transactionDate, transactionDate, (htmlText, targetDate) =>
                 {
@@ -180,16 +201,24 @@ namespace DataUploader
             var connection = ConfigurationManager.ConnectionStrings["CloudDBConnect"];
             var dataStore = new FuturesDataStore(connection.ConnectionString);
 
-            DateTime startDate = new DateTime(2015, 2, 3);
+            DateTime startDate = new DateTime(2013, 1, 1);
             DateTime endDate = DateTime.Now;
 
+            var dceTransactionCrawler = new DceDailyTransactionCrawler();
+            dceTransactionCrawler.RuntimeLogger = Logger;
+            var dceTransactionParser = new DceTransactionParser();
+            dceTransactionCrawler.PullData(startDate, endDate, (text, transDate) => DceDataHandler(text, transDate, dataStore));
+
+
             var shfeTransactionCrawler = new ShfeDailyTransactionCrawler();
+            shfeTransactionCrawler.RuntimeLogger = Logger;
             var shfeTransactionParser = new ShfeTransactionParser();
             shfeTransactionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
                 HandleDailyTransactionData(shfeTransactionParser, text, transDate, dataStore);
             });
             var shfePositionCrawler = new ShfeDealerPositionCrawler();
+            shfePositionCrawler.RuntimeLogger = Logger;
             var shfePositionParser = new ShfeDealerPositionParser();
             shfePositionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
@@ -197,22 +226,21 @@ namespace DataUploader
             });
 
             var czceTransactionCrawler = new CzceDailyTransactionCrawler();
+            czceTransactionCrawler.RuntimeLogger = Logger;
             var czceTransactionParser = new CzceTransactionParser();
             czceTransactionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
                 HandleDailyTransactionData(czceTransactionParser, text, transDate, dataStore);
             });
             var czcePositionCrawler = new CzceDealerPositionCrawler();
+            czcePositionCrawler.RuntimeLogger = Logger;
             var czcePositionParser = new CzceDealerPositionParser();
             czcePositionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
                 HandlePositionData(czcePositionParser, text, transDate, dataStore);
             });
 
-            var dceTransactionCrawler = new DceDailyTransactionCrawler();
-            var dceTransactionParser = new DceTransactionParser();
-            dceTransactionCrawler.PullData(startDate, endDate, (text, transDate) => DceDataHandler(text, transDate, dataStore));
-
+            System.Console.WriteLine("\n\n\n\n==================================\nFinished!!!!");
             System.Console.ReadLine();
         }
     }

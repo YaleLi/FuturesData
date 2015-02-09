@@ -34,6 +34,11 @@ namespace FuturesDataCrawler
                 //var receiveStream = response.GetResponseStream();
                 var reader = new StreamReader(response.GetResponseStream(), ContentEncoding);
                 content = reader.ReadToEnd();
+
+                if (null != RuntimeLogger)
+                {
+                    RuntimeLogger.Log(url.ToString()+" Downloaded");
+                }
             }
             catch (WebException e)
             {
