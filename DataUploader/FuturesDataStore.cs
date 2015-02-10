@@ -18,6 +18,10 @@ namespace DataUploader
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            if (null == modelBuilder)
+            {
+                return;
+            }
             modelBuilder.Entity<ContractTransactionInfo>().HasKey(e => e.ID);
             modelBuilder.Entity<DealerPositionInfo>().HasKey(e => e.Id);
         }

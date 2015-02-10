@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using DataParser;
 using DataType;
@@ -12,13 +13,37 @@ namespace DataUploader
 {
     class ConsoleLogger : ILogger
     {
+        private static string _fileName = "log.txt";
+        private static StreamWriter _logWriter = null;
+        private static Object _mutexLock = new object();
+
+        public ConsoleLogger()
+        {
+            if (null == _logWriter)
+            {
+                lock (_mutexLock)
+                {
+                    if (null == _logWriter)
+                    {
+                        _logWriter = new StreamWriter(new FileStream(_fileName, FileMode.Append, FileAccess.Write));
+                    }
+                }
+            }
+        }
         public void Log(string message)
         {
+            _logWriter.WriteLine(message);
+            _logWriter.FlushAsync();
             System.Console.WriteLine(message);
         }
 
         public void Log(Exception runtimeException)
         {
+            _logWriter.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception====XXXXXXXXXXXXXXXXXXXXX");
+            _logWriter.WriteLine(runtimeException.Message);
+            _logWriter.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception End====XXXXXXXXXXXXXXXXXXXXX");
+            _logWriter.FlushAsync();
+
             System.Console.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception====XXXXXXXXXXXXXXXXXXXXX");
             System.Console.WriteLine(runtimeException.Message);
             System.Console.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception End====XXXXXXXXXXXXXXXXXXXXX");
@@ -201,9 +226,10 @@ namespace DataUploader
             var connection = ConfigurationManager.ConnectionStrings["CloudDBConnect"];
             var dataStore = new FuturesDataStore(connection.ConnectionString);
 
-            DateTime startDate = new DateTime(2013, 1, 1);
-            DateTime endDate = DateTime.Now;
+            DateTime startDate = new DateTime(2012, 1, 1);
+            DateTime endDate = new DateTime(2013, 1, 1); ;
 
+            
             var dceTransactionCrawler = new DceDailyTransactionCrawler();
             dceTransactionCrawler.RuntimeLogger = Logger;
             var dceTransactionParser = new DceTransactionParser();
@@ -224,7 +250,7 @@ namespace DataUploader
             {
                 HandlePositionData(shfePositionParser, text, transDate, dataStore);
             });
-
+            
             var czceTransactionCrawler = new CzceDailyTransactionCrawler();
             czceTransactionCrawler.RuntimeLogger = Logger;
             var czceTransactionParser = new CzceTransactionParser();
