@@ -59,7 +59,7 @@ namespace DataParser
             if (!CodeMap.ContainsKey(codeName))
             {
                 var crawler = new DceCommodityCodeCrawler();
-                DateTime tmpDate = new DateTime(2015, 2, 10);
+                DateTime tmpDate = new DateTime(2015, 2, 9);
                 crawler.PullData(tmpDate, tmpDate, (text, transactionDate) => ParseCommodityCode(text));
             }
 

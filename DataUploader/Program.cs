@@ -226,10 +226,9 @@ namespace DataUploader
             var connection = ConfigurationManager.ConnectionStrings["CloudDBConnect"];
             var dataStore = new FuturesDataStore(connection.ConnectionString);
 
-            DateTime startDate = new DateTime(2012, 1, 1);
-            DateTime endDate = new DateTime(2013, 1, 1); ;
+            DateTime startDate = new DateTime(2011, 1, 1);
+            DateTime endDate = new DateTime(2011, 12, 31); ;
 
-            
             var dceTransactionCrawler = new DceDailyTransactionCrawler();
             dceTransactionCrawler.RuntimeLogger = Logger;
             var dceTransactionParser = new DceTransactionParser();
@@ -257,7 +256,7 @@ namespace DataUploader
             czceTransactionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
                 HandleDailyTransactionData(czceTransactionParser, text, transDate, dataStore);
-            });
+            }); 
             var czcePositionCrawler = new CzceDealerPositionCrawler();
             czcePositionCrawler.RuntimeLogger = Logger;
             var czcePositionParser = new CzceDealerPositionParser();

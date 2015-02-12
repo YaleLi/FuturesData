@@ -250,6 +250,28 @@ namespace FuturesDataTest
         }
 
         [TestMethod]
+        public void CzceContractDealerPositionParser_20120713Test()
+        {
+            DateTime date = new DateTime(2012, 7, 13);
+            string webText = TestUtility.RetrieveWebPage(date, new CzceDealerPositionCrawler());
+            var parser = new CzceDealerPositionParser();
+            var listFromWeb = parser.GetDealerPositionList(webText, date);
+
+            var testData = new List<SingleDealerPosition>();
+            testData.Add(new SingleDealerPosition(date, "CF", "", InformationType.VolumeInfo, 1, "光大期货", 5071));
+            testData.Add(new SingleDealerPosition(date, "RS", "", InformationType.BuyInfo, 8, "徽商期货", 1));
+            testData.Add(new SingleDealerPosition(date, "CF", "401", InformationType.VolumeInfo, 5, "上海金源", 1));
+            testData.Add(new SingleDealerPosition(date, "CF", "401", InformationType.BuyInfo, 9, "北京中期", 3));
+            testData.Add(new SingleDealerPosition(date, "FG", "401", InformationType.SellInfo, 4, "中证期货", 1));
+            testData.Add(new SingleDealerPosition(date, "TA", "401", InformationType.SellInfo, 20, "浙江中大", 1430));
+            testData.Add(new SingleDealerPosition(date, "TC", "401", InformationType.SellInfo, 3, "光大期货", 1));
+            testData.Add(new SingleDealerPosition(date, "SR", "405", InformationType.BuyInfo, 3, "中粮期货", 16869));
+            testData.Add(new SingleDealerPosition(date, "wh", "405", InformationType.SellInfo, 20, "美尔雅", 1066));
+
+            ValidateValues(testData, listFromWeb);
+        }
+
+        [TestMethod]
         public void CzceHolidayContractDealerPositionParserTest()
         {
             DateTime date = new DateTime(2015, 1, 1);

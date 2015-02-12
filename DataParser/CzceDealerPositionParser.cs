@@ -59,6 +59,10 @@ namespace DataParser
             string month = "";
             string text = textBlock.First().InnerText;
             ExtractCommodityContract(text, out commodity, out month);
+            if (string.IsNullOrEmpty(commodity))
+            {
+                return null;
+            }
 
             var rows = table.Descendants("tr").Skip(2);
             StringBuilder vDealers = new StringBuilder();
