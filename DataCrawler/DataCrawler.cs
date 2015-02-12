@@ -46,6 +46,7 @@ namespace FuturesDataCrawler
                 {
                     RuntimeLogger.Log(e.GetType().ToString() + "===" + e.Message + ": " + url);
                 }
+                content = null;
             }
 
             return content;
@@ -73,7 +74,14 @@ namespace FuturesDataCrawler
                     date = date.AddDays(-1);
                     continue;
                 }
-                content = PullData(BuildUrl(date));
+                for (int i = 0; i < 3; i++)
+                {
+                    content = PullData(BuildUrl(date));
+                    if (null != content)
+                    {
+                        break;
+                    }
+                }
                 if (null != dataHandler && !string.IsNullOrEmpty(content))
                 {
                     dataHandler(content, date);
