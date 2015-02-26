@@ -54,8 +54,8 @@
         [TestMethod]
         public void DownloadCzceDealerInfoTest()
         {
-            string webText = TestUtility.RetrieveWebPage(new DateTime(2014, 1, 6), new CzceDealerPositionCrawler());
-            var localText = TestUtility.LoadLocalFile("..\\..\\Data\\czce_position_20140106.htm", Encoding.UTF8);
+            string webText = TestUtility.RetrieveWebPage(new DateTime(2014, 1, 6), new CzceDealerPositionCrawler()).Trim();
+            var localText = TestUtility.LoadLocalFile("..\\..\\Data\\czce_position_20140106.htm", Encoding.UTF8).Trim();
 
             Assert.IsTrue(localText.Equals(webText));
 
