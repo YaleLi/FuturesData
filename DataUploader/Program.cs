@@ -232,21 +232,21 @@ namespace DataUploader
             var dceTransactionCrawler = new DceDailyTransactionCrawler();
             dceTransactionCrawler.RuntimeLogger = Logger;
             var dceTransactionParser = new DceTransactionParser();
-            dceTransactionCrawler.PullData(startDate, endDate, (text, transDate) => DceDataHandler(text, transDate, dataStore));
+            dceTransactionCrawler.PullData(startDate, endDate, (text, transDate) => DceDataHandler(text, transDate.Date, dataStore));
 
             var shfeTransactionCrawler = new ShfeDailyTransactionCrawler();
             shfeTransactionCrawler.RuntimeLogger = Logger;
             var shfeTransactionParser = new ShfeTransactionParser();
             shfeTransactionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
-                HandleDailyTransactionData(shfeTransactionParser, text, transDate, dataStore);
+                HandleDailyTransactionData(shfeTransactionParser, text, transDate.Date, dataStore);
             });
             var shfePositionCrawler = new ShfeDealerPositionCrawler();
             shfePositionCrawler.RuntimeLogger = Logger;
             var shfePositionParser = new ShfeDealerPositionParser();
             shfePositionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
-                HandlePositionData(shfePositionParser, text, transDate, dataStore);
+                HandlePositionData(shfePositionParser, text, transDate.Date, dataStore);
             });
 
             var czceTransactionCrawler = new CzceDailyTransactionCrawler();
@@ -254,14 +254,14 @@ namespace DataUploader
             var czceTransactionParser = new CzceTransactionParser();
             czceTransactionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
-                HandleDailyTransactionData(czceTransactionParser, text, transDate, dataStore);
+                HandleDailyTransactionData(czceTransactionParser, text, transDate.Date, dataStore);
             }); 
             var czcePositionCrawler = new CzceDealerPositionCrawler();
             czcePositionCrawler.RuntimeLogger = Logger;
             var czcePositionParser = new CzceDealerPositionParser();
             czcePositionCrawler.PullData(startDate, endDate, (text, transDate) =>
             {
-                HandlePositionData(czcePositionParser, text, transDate, dataStore);
+                HandlePositionData(czcePositionParser, text, transDate.Date, dataStore);
             });
 
             System.Console.WriteLine("\n\n\n\n==================================\nFinished!!!!");
