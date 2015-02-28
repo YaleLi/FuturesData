@@ -6,12 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using DataType;
 
-namespace DataUploader
+namespace DataType
 {
-    class FuturesDataStore : DbContext
+    public class FuturesDataStore : DbContext
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Infoes")]
         public virtual DbSet<ContractTransactionInfo> ContractTransactionInfoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Infoes")]
         public virtual DbSet<DealerPositionInfo> DealerPositionInfoes { get; set; }
+
+        public virtual DbSet<ContractTransactionFeature> ContractTransactionFeatures { get; set; }
 
         public FuturesDataStore(string nameOrConnectionString) : base(nameOrConnectionString)
         {
@@ -24,6 +28,7 @@ namespace DataUploader
             }
             modelBuilder.Entity<ContractTransactionInfo>().HasKey(e => e.ID);
             modelBuilder.Entity<DealerPositionInfo>().HasKey(e => e.Id);
+            modelBuilder.Entity<ContractTransactionFeature>().HasKey(e => e.Id);
         }
 
     }

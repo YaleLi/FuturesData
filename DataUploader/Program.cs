@@ -33,7 +33,7 @@ namespace DataUploader
         public void Log(string message)
         {
             _logWriter.WriteLine(message);
-            _logWriter.FlushAsync();
+            _logWriter.Flush();
             System.Console.WriteLine(message);
         }
 
@@ -42,7 +42,7 @@ namespace DataUploader
             _logWriter.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception====XXXXXXXXXXXXXXXXXXXXX");
             _logWriter.WriteLine(runtimeException.Message);
             _logWriter.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception End====XXXXXXXXXXXXXXXXXXXXX");
-            _logWriter.FlushAsync();
+            _logWriter.Flush();
 
             System.Console.WriteLine("XXXXXXXXXXXXXXXXXX=====Exception====XXXXXXXXXXXXXXXXXXXXX");
             System.Console.WriteLine(runtimeException.Message);
@@ -226,8 +226,8 @@ namespace DataUploader
             var connection = ConfigurationManager.ConnectionStrings["CloudDBConnect"];
             var dataStore = new FuturesDataStore(connection.ConnectionString);
 
-            DateTime startDate = new DateTime(2010, 1, 1);
-            DateTime endDate = new DateTime(2010, 12, 31); ;
+            DateTime startDate = new DateTime(2015, 2, 1);
+            DateTime endDate = new DateTime(2015, 2, 28); ;
 
             var dceTransactionCrawler = new DceDailyTransactionCrawler();
             dceTransactionCrawler.RuntimeLogger = Logger;
@@ -249,7 +249,6 @@ namespace DataUploader
                 HandlePositionData(shfePositionParser, text, transDate, dataStore);
             });
 
-            
             var czceTransactionCrawler = new CzceDailyTransactionCrawler();
             czceTransactionCrawler.RuntimeLogger = Logger;
             var czceTransactionParser = new CzceTransactionParser();

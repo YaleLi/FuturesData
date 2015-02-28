@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,8 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractTransactionFeature.cs" />
     <Compile Include="ContractTransactionInfo.cs" />
     <Compile Include="DealerPositionInfo.cs" />
+    <Compile Include="FuturesDataStore.cs" />
     <Compile Include="GlobalDefinition.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HtmlParseException.cs" />
@@ -64,6 +68,9 @@
       <Project>{ab01483c-24d6-42c5-9d64-a500e4975bcc}</Project>
       <Name>Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScript", "SqlScript", "{
 		SqlScript\BuildLearningMatrix.sql = SqlScript\BuildLearningMatrix.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPreprocessor", "DataPreprocessor\DataPreprocessor.csproj", "{403A4485-B794-4EB0-98FC-4842B051A793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{4C6D54A5-7C94-4648-A911-C63B7ECEF3CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C6D54A5-7C94-4648-A911-C63B7ECEF3CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C6D54A5-7C94-4648-A911-C63B7ECEF3CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{403A4485-B794-4EB0-98FC-4842B051A793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{403A4485-B794-4EB0-98FC-4842B051A793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{403A4485-B794-4EB0-98FC-4842B051A793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{403A4485-B794-4EB0-98FC-4842B051A793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

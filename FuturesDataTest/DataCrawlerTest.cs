@@ -1,4 +1,6 @@
-﻿namespace FuturesDataTest
+﻿using System.Text.RegularExpressions;
+
+namespace FuturesDataTest
 {
     using System;
     using System.IO;
@@ -38,7 +40,7 @@
 
             Assert.IsTrue(localText.Equals(webText));
 
-            webText = TestUtility.RetrieveWebPage(new DateTime(2014, 2, 3), new ShfeDailyTransactionCrawler());
+            webText = TestUtility.RetrieveWebPage(new DateTime(2015, 2, 3), new ShfeDailyTransactionCrawler());
             Assert.IsFalse(localText.Equals(webText));
         }
 
@@ -55,11 +57,12 @@
         public void DownloadCzceDealerInfoTest()
         {
             string webText = TestUtility.RetrieveWebPage(new DateTime(2014, 1, 6), new CzceDealerPositionCrawler()).Trim();
+            webText = Regex.Replace(webText, "\r\n", "\n");
             var localText = TestUtility.LoadLocalFile("..\\..\\Data\\czce_position_20140106.htm", Encoding.UTF8).Trim();
 
             Assert.IsTrue(localText.Equals(webText));
 
-            webText = TestUtility.RetrieveWebPage(new DateTime(2014, 2, 3), new CzceDealerPositionCrawler());
+            webText = TestUtility.RetrieveWebPage(new DateTime(2015, 2, 3), new CzceDealerPositionCrawler());
             Assert.IsFalse(localText.Equals(webText));
         }
 
@@ -79,11 +82,12 @@
         public void DownloadCzceTransactionInfoTest()
         {
             string webText = TestUtility.RetrieveWebPage(new DateTime(2014, 1, 6), new CzceDailyTransactionCrawler());
+            webText = Regex.Replace(webText, "\r\n", "\n");
             var localText = TestUtility.LoadLocalFile("..\\..\\Data\\czce_transaction_20140106.htm", Encoding.UTF8);
 
             Assert.IsTrue(localText.Equals(webText));
 
-            webText = TestUtility.RetrieveWebPage(new DateTime(2014, 2, 3), new CzceDailyTransactionCrawler());
+            webText = TestUtility.RetrieveWebPage(new DateTime(2015, 2, 3), new CzceDailyTransactionCrawler());
             Assert.IsFalse(localText.Equals(webText));
         }
 
@@ -142,6 +146,7 @@
         public void DownloadHolidayDceDealerCommodityInfoTest()
         {
             var webText = TestUtility.RetrieveWebPage(new DateTime(2015, 1, 1), new DceDealerPositionCrawler("a", ""));
+            webText = Regex.Replace(webText, "\r\n", "\n");
             var localText = TestUtility.LoadLocalFile("..\\..\\Data\\dce_a_position_20150101.htm", Encoding.UTF8);
 
             Assert.IsTrue(localText.Equals(webText));
@@ -154,6 +159,7 @@
         public void DownloadDceTransactionInfoTest()
         {
             string webText = TestUtility.RetrieveWebPage(new DateTime(2014, 1, 6), new DceDailyTransactionCrawler());
+            webText = Regex.Replace(webText, "\r\n", "\n");
             var localText = TestUtility.LoadLocalFile("..\\..\\Data\\dce_transaction_20140106.htm", Encoding.UTF8);
 
             Assert.IsTrue(localText.Equals(webText));
@@ -166,6 +172,7 @@
         public void DownloadHolidayDceTransactionInfoTest()
         {
             string webText = TestUtility.RetrieveWebPage(new DateTime(2015, 1, 1), new DceDailyTransactionCrawler());
+            webText = Regex.Replace(webText, "\r\n", "\n");
             var localText = TestUtility.LoadLocalFile("..\\..\\Data\\dce_a_position_20150101.htm", Encoding.UTF8);
 
             Assert.IsTrue(localText.Equals(webText));
