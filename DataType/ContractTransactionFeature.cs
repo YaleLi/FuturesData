@@ -10,6 +10,7 @@ namespace DataType
     {
         public string Id { get; set; }
 
+        public int Volume { get; set; }
         public double? ReturnRate1 { get; set; }
 
         public double? ReturnRate5 { get; set; }

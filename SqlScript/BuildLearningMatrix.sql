@@ -5,6 +5,7 @@ IF OBJECT_ID(N'[dbo].[ContractTransactionFeatures]') IS NULL
     CREATE TABLE [dbo].[ContractTransactionFeatures]
 	(
 		[Id] [nvarchar](128) NOT NULL PRIMARY KEY CLUSTERED,
+		[Volume] int,
 		[ReturnRate1] float,
 		[ReturnRate5] float,
 		[ReturnRate10] float,

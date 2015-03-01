@@ -12,7 +12,13 @@ namespace DataPreprocessor
         {
             var processor = new ContractTransactionProcessor();
 
-            processor.ProcessData(DateTime.Now.AddDays(-7), DateTime.Now);
+            DateTime startDate = new DateTime(2012, 9, 20);
+            DateTime endDate = new DateTime(2015, 2, 28);
+            processor.ProcessData(startDate, endDate);
+
+
+            System.Console.WriteLine("Finished.....");
+            System.Console.ReadLine();
         }
     }
 }
