@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ContractTransactionFeature.cs" />
     <Compile Include="ContractTransactionInfo.cs" />
+    <Compile Include="DealerPositionFeature.cs" />
     <Compile Include="DealerPositionInfo.cs" />
     <Compile Include="FuturesDataStore.cs" />
     <Compile Include="GlobalDefinition.cs" />

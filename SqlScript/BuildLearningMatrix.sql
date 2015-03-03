@@ -1,5 +1,5 @@
 
-DROP TABLE [dbo].[ContractTransactionFeatures]
+--DROP TABLE [dbo].[ContractTransactionFeatures]
 IF OBJECT_ID(N'[dbo].[ContractTransactionFeatures]') IS NULL
   BEGIN
     CREATE TABLE [dbo].[ContractTransactionFeatures]
@@ -32,6 +32,28 @@ IF OBJECT_ID(N'[dbo].[ContractTransactionFeatures]') IS NULL
 		[DeltaCloseSettlePrice5] float,
 		[DeltaCloseSettlePrice10] float,
 		[DeltaCloseSettlePrice20] float
+	)
+  END;
+
+
+IF OBJECT_ID(N'[dbo].[DealerPositionFeatures]') IS NULL
+  BEGIN
+  	CREATE TABLE [dbo].[DealerPositionFeatures]
+	(
+		[Id] [nvarchar](128) NOT NULL PRIMARY KEY CLUSTERED,
+		[Volume] int,
+		[TopBuy5Delta1] float,
+		[TopBuy5Delta3] float,
+		[TopBuy5Delta10] float,
+		[TopBuy20Delta1] float,
+		[TopBuy20Delta3] float,
+		[TopBuy20Delta10] float,
+		[TopSell5Delta1] float,
+		[TopSell5Delta3] float,
+		[TopSell5Delta10] float,
+		[TopSell20Delta1] float,
+		[TopSell20Delta3] float,
+		[TopSell20Delta10] float
 	)
 
   END;

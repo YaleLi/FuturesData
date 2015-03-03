@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContractTransactionProcessor.cs" />
+    <Compile Include="DealerPositionProcessor.cs" />
+    <Compile Include="FutureDataPreprocessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

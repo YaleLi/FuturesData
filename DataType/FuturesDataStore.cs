@@ -16,6 +16,7 @@ namespace DataType
         public virtual DbSet<DealerPositionInfo> DealerPositionInfoes { get; set; }
 
         public virtual DbSet<ContractTransactionFeature> ContractTransactionFeatures { get; set; }
+        public virtual DbSet<DealerPositionFeature> DealerPositionFeatures { get; set; }
 
         public FuturesDataStore(string nameOrConnectionString) : base(nameOrConnectionString)
         {
@@ -29,6 +30,7 @@ namespace DataType
             modelBuilder.Entity<ContractTransactionInfo>().HasKey(e => e.ID);
             modelBuilder.Entity<DealerPositionInfo>().HasKey(e => e.Id);
             modelBuilder.Entity<ContractTransactionFeature>().HasKey(e => e.Id);
+            modelBuilder.Entity<DealerPositionFeature>().HasKey(e => e.Id);
         }
 
     }

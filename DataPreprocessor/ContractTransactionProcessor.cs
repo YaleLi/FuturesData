@@ -12,11 +12,9 @@ using DataType;
 
 namespace DataPreprocessor
 {
-    public sealed class ContractTransactionProcessor
+    public sealed class ContractTransactionProcessor : FutureDataPreprocessor
     {
-        private FuturesDataStore dataStore = null;
-
-        private ContractTransactionFeature GenerateFeatures(ContractTransactionInfo info, IEnumerable<ContractTransactionInfo> contextData)
+        public ContractTransactionFeature GenerateFeatures(ContractTransactionInfo info, IEnumerable<ContractTransactionInfo> contextData)
         {
             if (0 == info.Volume || 0 == info.Position || info.OpenPrice <= 0 || info.ClosePrice <= 0 || info.SettlePrice <= 0)
             {
@@ -39,7 +37,7 @@ namespace DataPreprocessor
             }
 
             var featureRow = new ContractTransactionFeature();
-            featureRow.Id = "_N" + info.TransactionDate.ToString(GlobalDefinition.DateFormat, GlobalDefinition.FormatProvider) + "_" + info.Commodity;
+            featureRow.Id = BuildId(info.TransactionDate, info.Commodity);
             featureRow.Volume = info.Volume;
             var closePrice = info.ClosePrice + 0.01;
             if (index + 10 < length)
@@ -123,56 +121,30 @@ namespace DataPreprocessor
 
         public void ProcessData(DateTime start, DateTime end)
         {
-            if (end < start)
-            {
-                return;
-            }
+            var originalData = GetTopTransactionInfo(start, end);
 
-            if (null == dataStore)
-            {
-                dataStore = new FuturesDataStore(ConfigurationManager.ConnectionStrings["CloudDBConnect"].ConnectionString);
-            }
-
-            var startDate = start.Date;
-            var endDate = end.Date;
-            var originalData = dataStore.ContractTransactionInfoes.Where(d => d.TransactionDate>= startDate && d.TransactionDate <= endDate).ToArray();
-
+            int count = 0;
             if (originalData.Any())
             {
-                startDate = startDate.AddDays(-60);
-                endDate = endDate.AddDays(30);
+                var contextData = GetTransactionInfo(start.AddDays(BACK_CONTEXT_DAYS), end.AddDays(FORWARD_CONTEXT_DAYS));
 
-                int counter = 0;
-                var featureRows = new List<ContractTransactionFeature>();
-                var contextData = dataStore.ContractTransactionInfoes.Where(d => d.TransactionDate >= startDate && d.TransactionDate < endDate).ToList();
-                foreach (var dailyContracts in originalData.GroupBy(d => d.TransactionDate))
+                foreach (var topContract in originalData)
                 {
-                    foreach (var dailyCommodities in dailyContracts.GroupBy(d => d.Commodity))
+                    var row = GenerateFeatures(topContract, contextData);
+                    if (null != row)
                     {
-                        var topContract = dailyCommodities.OrderByDescending(d => d.Volume).First();
-                        var row = GenerateFeatures(topContract, contextData);
-                        if (null != row)
-                        {
-                            featureRows.Add(row);
-                        }
+                        DataStore.ContractTransactionFeatures.AddOrUpdate(row);
+                        ++count;
+                    }
 
-                        if (featureRows.Count >= 100)
-                        {
-                            dataStore.ContractTransactionFeatures.AddRange(featureRows);
-                            //dataStore.ContractTransactionFeatures.AddOrUpdate(featureRows.First());
-                            dataStore.SaveChanges();
-                            featureRows.Clear();
-                        }
+                    if (count >= 100)
+                    {
+                        DataStore.SaveChanges();
+                        count = 0;
                     }
                 }
 
-                if (featureRows.Any())
-                {
-                    dataStore.ContractTransactionFeatures.AddRange(featureRows);
-                    dataStore.SaveChanges();
-                    featureRows.Clear();
-                }
-                
+                DataStore.SaveChanges();
             }
         }
    }
